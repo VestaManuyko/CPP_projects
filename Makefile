@@ -1,14 +1,14 @@
 NAME = megaphone
 
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -MMD
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 OBJ_DIR = obj
 
 SRC = megaphone.cpp
 
-OBJ = $(SRC:%.cpp=obj/%.o)
-DEP = $(SRC:%.cpp=obj/%.d)
+OBJ = $(SRC:%.cpp=$(OBJ_DIR)/%.o)
+DEP = $(SRC:%.cpp=$(OBJ_DIR)/%.d)
 
 all: $(NAME)
 
@@ -16,7 +16,7 @@ $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
 $(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR)
-	@$(CC) $(CFLAGS) -MMD -MF $(@:.o=.d) -c $< -o megaphone.cpp
+	@$(CC) $(CFLAGS) -MMD -MF $(@:.o=.d) -c $< -o $@
 
 $(NAME): $(OBJ_DIR) $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
