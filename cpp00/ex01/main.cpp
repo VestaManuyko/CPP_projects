@@ -4,7 +4,8 @@
 int main(void)
 {
 	std::string str;
-	Contact		MyContact;
+	int			i = 0;
+	Contact		MyContacts[8];
 	Phonebook	MyPhonebook;
 
 	while (1)
@@ -19,12 +20,15 @@ int main(void)
 			return (0);
 		if (str == "ADD")
 		{
-			if (MyContact.FillContactData() == 1)
+			if (i == 8)
+				i = 0;
+			if (MyContacts[i].FillContactData() == 1)
 			{
 				std::cout << "\nEOF detected, exiting...\n";
 				return 0;
 			}
-			MyPhonebook.AddContact(&MyContact);
+			MyPhonebook.AddContact(&MyContacts[i]);
+			i++;
 		}
 		if (str == "SEARCH")
 		{
