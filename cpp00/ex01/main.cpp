@@ -1,5 +1,41 @@
 #include "Phonebook.hpp"
 #include "Contact.hpp"
+#include <sstream>
+
+static int	DisplayContactDetails(std::string &str, Contact &MyContact, Phonebook MyPhonebook)
+{
+	ContactData Data;
+	int 		index;
+
+	while (1)
+	{
+		std::cout << "Please choose the index of the contact to display contacts details\nChosen index: ";
+		if (!std::getline(std::cin, str))
+		{
+			std::cout << "EOF detected, exiting...\n";
+			return 1;
+		}
+		if (str.length() == 1)
+		{
+			if (std::isdigit(str[0]))
+			{
+				std::istringstream(str) >> index;
+				if (index < MyPhonebook.AmountOfContacts)
+				{
+					MyContact.GetContactData(&Data);
+					std::cout << "First name: " << Data.FirstName << std::endl;
+					std::cout << "Last name: " << Data.LastName << std::endl;
+					std::cout << "Nickname: " << Data.Nickname << std::endl;
+					std::cout << "Phone number: " << Data.PhoneNumber << std::endl;
+					std::cout << "Darkest secret: " << Data.DarkestSecret << std::endl;
+					break ;
+				}
+			}
+		}
+		std::cout << "Incorrect index, try again\n";
+	}
+	return 0;
+}
 
 int main(void)
 {
@@ -37,6 +73,8 @@ int main(void)
 				<< std::setw(10) << "Last name" << "|"
 				<< std::setw(10) << "Nickname" << "|" << std::endl;
 			MyPhonebook.DisplayContacts();
+			if (DisplayContactDetails(str,MyContacts[i], MyPhonebook) == 1)
+				return 0;
 		}
 		std::cout << std::endl;
 	}

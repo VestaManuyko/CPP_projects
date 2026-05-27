@@ -12,9 +12,9 @@ class Phonebook
 
 	void	AddContact(Contact *Contact, int i);
 	void	DisplayContacts();
+	int		AmountOfContacts;
 
 	private:
-		int		AmountOfContacts;
 		Contact *contacts[8];
 };
 
