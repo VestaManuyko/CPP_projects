@@ -18,6 +18,9 @@ class Contact
 	public:
 		Contact();
 		~Contact();
+
+	int	GetContactData(ContactData *data);
+	
 	private:
 		ContactData	data;
 };
