@@ -19,7 +19,7 @@ class Contact
 		Contact();
 		~Contact();
 
-	int	GetContactData(ContactData *data);
+	int	GetContactData();
 	
 	private:
 		ContactData	data;
