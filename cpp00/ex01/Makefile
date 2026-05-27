@@ -5,7 +5,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 OBJ_DIR = obj
 
-SRC = Phonebook.cpp main.cpp Contact.cpp GetContactData.cpp
+SRC = Phonebook.cpp main.cpp Contact.cpp
 
 OBJ = $(SRC:%.cpp=obj/%.o)
 DEP = $(SRC:%.cpp=obj/%.d)

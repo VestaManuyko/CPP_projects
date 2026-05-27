@@ -1,7 +1,8 @@
 #ifndef CONTACT_HPP
 # define CONTACT_HPP
 
-# include "iostream"
+# include <iostream>
+# include <cctype>
 
 struct ContactData
 {
@@ -12,17 +13,17 @@ struct ContactData
 	std::string DarkestSecret;
 };
 
-
 class Contact
 {
 	public:
 		Contact();
 		~Contact();
 
-	int	GetContactData();
+	int		FillContactData();
+	void	GetContactData(ContactData *Data);
 	
 	private:
-		ContactData	data;
+		ContactData	Data;
 };
 
 #endif

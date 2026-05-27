@@ -1,14 +1,11 @@
-#include <cctype>
-#include <iostream>
 #include "Phonebook.hpp"
 #include "Contact.hpp"
 
 int main(void)
 {
 	std::string str;
-	Contact		Contact;
-	ContactData Data;
-	Phonebook	Phonebook;
+	Contact		MyContact;
+	Phonebook	MyPhonebook;
 
 	while (1)
 	{
@@ -22,12 +19,20 @@ int main(void)
 			return (0);
 		if (str == "ADD")
 		{
-			if (Contact.GetContactData() == 1)
+			if (MyContact.FillContactData() == 1)
 			{
 				std::cout << "\nEOF detected, exiting...\n";
 				return 0;
 			}
-			
+			MyPhonebook.AddContact(&MyContact);
+		}
+		if (str == "SEARCH")
+		{
+			std::cout << "|" << std::setw(10) << "Index" << "|"
+				<< std::setw(10) << "First name" << "|"
+				<< std::setw(10) << "Last name" << "|"
+				<< std::setw(10) << "Nickname" << "|" << std::endl;
+			MyPhonebook.DisplayContacts();
 		}
 		std::cout << std::endl;
 	}
