@@ -2,14 +2,14 @@
 #include "Contact.hpp"
 #include <sstream>
 
-static int	DisplayContactDetails(std::string &str, Contact &MyContact, Phonebook MyPhonebook)
+static int	DisplayContactDetails(std::string &str, Contact MyContacts[8], Phonebook MyPhonebook)
 {
 	ContactData Data;
 	int 		index;
 
 	while (1)
 	{
-		std::cout << "Please choose the index of the contact to display contacts details\nChosen index: ";
+		std::cout << "Please choose the index of the contact to display contact details\nChosen index: ";
 		if (!std::getline(std::cin, str))
 		{
 			std::cout << "EOF detected, exiting...\n";
@@ -22,7 +22,7 @@ static int	DisplayContactDetails(std::string &str, Contact &MyContact, Phonebook
 				std::istringstream(str) >> index;
 				if (index < MyPhonebook.AmountOfContacts)
 				{
-					MyContact.GetContactData(&Data);
+					MyContacts[index].GetContactData(&Data);
 					std::cout << "First name: " << Data.FirstName << std::endl;
 					std::cout << "Last name: " << Data.LastName << std::endl;
 					std::cout << "Nickname: " << Data.Nickname << std::endl;
@@ -73,7 +73,7 @@ int main(void)
 				<< std::setw(10) << "Last name" << "|"
 				<< std::setw(10) << "Nickname" << "|" << std::endl;
 			MyPhonebook.DisplayContacts();
-			if (DisplayContactDetails(str,MyContacts[i], MyPhonebook) == 1)
+			if (DisplayContactDetails(str,MyContacts, MyPhonebook) == 1)
 				return 0;
 		}
 		std::cout << std::endl;
