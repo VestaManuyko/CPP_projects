@@ -27,7 +27,7 @@ int main(void)
 				std::cout << "\nEOF detected, exiting...\n";
 				return 0;
 			}
-			MyPhonebook.AddContact(&MyContacts[i]);
+			MyPhonebook.AddContact(&MyContacts[i], i);
 			i++;
 		}
 		if (str == "SEARCH")

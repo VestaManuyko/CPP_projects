@@ -10,7 +10,7 @@ class Phonebook
 		Phonebook();
 		~Phonebook();
 
-	void	AddContact(Contact *Contact);
+	void	AddContact(Contact *Contact, int i);
 	void	DisplayContacts();
 
 	private:

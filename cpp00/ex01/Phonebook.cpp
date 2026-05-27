@@ -15,7 +15,7 @@ Phonebook::~Phonebook(void)
 	return ;
 }
 
-void Phonebook::AddContact(Contact *Contact)
+void Phonebook::AddContact(Contact *Contact, int i)
 {
 	if (this->AmountOfContacts < 8)
 	{
@@ -24,8 +24,7 @@ void Phonebook::AddContact(Contact *Contact)
 	}
 	else
 	{
-		this->contacts[0] = Contact;
-		this->AmountOfContacts = 1;
+		this->contacts[i] = Contact;
 	}
 }
 
