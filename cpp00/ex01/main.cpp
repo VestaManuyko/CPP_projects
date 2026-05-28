@@ -9,7 +9,7 @@ static int	DisplayContactDetails(std::string &str, Contact MyContacts[8], Phoneb
 
 	while (1)
 	{
-		std::cout << "Please choose the index of the contact to display contact details\nChosen index: ";
+		std::cout << "Please choose the index of the contact to display contact details.\nChosen index: ";
 		if (!std::getline(std::cin, str))
 		{
 			std::cout << "EOF detected, exiting...\n";
