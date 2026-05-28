@@ -35,14 +35,14 @@ void Account::displayAccountsInfos(void)
 Account::Account(int initial_deposit)
 {
 	_displayTimestamp();
-	std::cout << " index:" << _accountIndex 
-	<< ";amount:" << _amount << ";created\n";
 	_accountIndex = _nbAccounts;
+	_amount = initial_deposit;
 	_nbAccounts += 1;
 	_totalAmount += initial_deposit;
-	_amount = initial_deposit;
 	_nbDeposits = 0;
 	_nbWithdrawals = 0;
+	std::cout << " index:" << _accountIndex 
+	<< ";amount:" << _amount << ";created\n";
 }
 Account::Account(void)
 {
