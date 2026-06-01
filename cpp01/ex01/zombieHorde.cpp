@@ -2,15 +2,23 @@
 
 Zombie* zombieHorde(int N, std::string name)
 {
-	Zombie *Horde;
+	Zombie *Horde = NULL;
+	int i = 0;
 
+	if (N < 1)
+		return NULL;
 	try
 	{
-		Horde = new Zombie(name)[N];
+		Horde = new Zombie[N];
+		while (i < N)
+		{
+			Horde[i].setName(name);
+			i++;
+		}
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << e.what() << std::endl;
 	}
-	return ;
+	return (Horde);
 }

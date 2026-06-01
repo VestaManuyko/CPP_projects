@@ -1,11 +1,11 @@
-NAME = main.cpp
+NAME = horde
 
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror -std=c++98 
 
 OBJ_DIR = obj
 
-SRC = zombieHorde.cpp
+SRC = zombieHorde.cpp main.cpp Zombie.cpp
 
 OBJ = $(SRC:%.cpp=obj/%.o)
 DEP = $(SRC:%.cpp=obj/%.d)
