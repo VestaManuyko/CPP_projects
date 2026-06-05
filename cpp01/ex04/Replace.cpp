@@ -28,14 +28,16 @@ int Replace::createReplacedFile(std::string newExtension)
 
 void Replace::replaceContent(std::string s1, std::string s2)
 {
-	size_t	pos;
+	size_t	pos = 0;
 
-	pos = _content->find(s1);
-	while (pos != _content->npos)
+	if (!s1.empty())
 	{
-		_content->insert(pos, s2);
-		_content->erase(pos + s2.size(), s1.size());
-		pos = _content->find(s1);
+		while ((pos = _content->find(s1, pos)) != _content->npos)
+		{
+			_content->insert(pos, s2);
+			_content->erase(pos + s2.size(), s1.size());
+			pos += s2.size();
+		}
 	}
 	_replacedFile << *_content;
 }
