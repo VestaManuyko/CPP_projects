@@ -12,7 +12,26 @@ Harl::~Harl()
 
 void Harl::complain(std::string level)
 {
-	
+	int	i = 0;
+
+	if (level.empty())
+		return ;
+	void (Harl::*funcs[4])() = {&Harl::debug, &Harl::info,
+    	&Harl::warning, &Harl::error};
+	if (level.size() == 1 && isdigit(level[0]))
+	{
+		std::istringstream(level) >> i;
+		i--;
+	}
+	else
+	{
+		std::string levels[5] = {"DEBUG", "INFO", "WARNING", "ERROR", "UNKNOWN"};
+		while (i < 4 && levels[i] != level)
+			i++;
+	}
+	if (i > 3 || i < 0)
+		return ;
+	(this->*funcs[i])();
 }
 
 void Harl::debug()

@@ -2,6 +2,8 @@
 # define HARL_HPP
 
 # include <iostream>
+# include <cctype>
+# include <sstream>
 
 class Harl
 {
