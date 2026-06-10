@@ -124,3 +124,17 @@ Fixed	Fixed::operator-(const Fixed &other) const
 	result.setRawBits(_fixed - other.getRawBits());
 	return (result);
 }
+
+Fixed	Fixed::operator*(const Fixed &other) const
+{
+	Fixed result;
+	result.setRawBits((_fixed * other.getRawBits()) / 256);
+	return (result);
+}
+
+Fixed	Fixed::operator/(const Fixed &other) const
+{
+	Fixed result;
+	result.setRawBits((_fixed * 256) / other.getRawBits());
+	return (result);
+}

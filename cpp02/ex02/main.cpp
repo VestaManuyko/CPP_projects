@@ -59,12 +59,12 @@ void	comparisonTests()
 void	arithmeticTests()
 {
 	Fixed a(10);
-	Fixed b(10.75f);
+	Fixed b(5);
 	Fixed res;
 
-	res = a + b;
+	res = a * b;
 	std::cout << res << std::endl;
-	res = res - b;
+	res = a / b;
 	std::cout << res << std::endl;
 }
 
