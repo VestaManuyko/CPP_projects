@@ -135,6 +135,6 @@ Fixed	Fixed::operator*(const Fixed &other) const
 Fixed	Fixed::operator/(const Fixed &other) const
 {
 	Fixed result;
-	result.setRawBits((_fixed * 256) / other.getRawBits());
+	result.setRawBits((_fixed / other.getRawBits()) * 256);
 	return (result);
 }
