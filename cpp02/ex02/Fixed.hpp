@@ -33,6 +33,9 @@ class Fixed
 		Fixed 	operator*(const Fixed& other) const;
 		Fixed 	operator/(const Fixed& other) const;
 
+		Fixed	&operator++();
+		//void	Fixed::operator--();
+
 		private:
 		int					_fixed;
 		static const int	_fractionalBits = 8;

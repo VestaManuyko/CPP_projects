@@ -138,3 +138,14 @@ Fixed	Fixed::operator/(const Fixed &other) const
 	result.setRawBits((_fixed / other.getRawBits()) * 256);
 	return (result);
 }
+
+Fixed	&Fixed::operator++()
+{
+	_fixed += 1;
+	return (*this);
+}
+
+// void	Fixed::operator--()
+// {
+// 	setRawBits(getRawBits() - 1);
+// }

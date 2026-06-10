@@ -62,16 +62,27 @@ void	arithmeticTests()
 	Fixed b(5);
 	Fixed res;
 
+	std::cout << "ArithmeticTests\n";
 	res = a * b;
 	std::cout << res << std::endl;
 	res = a / b;
-	std::cout << res << std::endl;
+	std::cout << res << std::endl << std::endl;
+}
+
+void	incrementDecrementTests()
+{
+	Fixed a(1.1f);
+
+	std::cout << a << std::endl;
+	std::cout << ++a << std::endl;
+	std::cout << a << std::endl;
 }
 
 int main()
 {
 	comparisonTests();
 	arithmeticTests();
+	incrementDecrementTests();
 
 	return 0;
 }
