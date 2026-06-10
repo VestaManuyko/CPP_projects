@@ -110,3 +110,17 @@ bool	Fixed::operator!=(const Fixed &other) const
 {
 	return (_fixed != other.getRawBits());
 }
+
+Fixed	Fixed::operator+(const Fixed &other) const
+{
+	Fixed result;
+	result.setRawBits(_fixed + other.getRawBits());
+	return (result);
+}
+
+Fixed	Fixed::operator-(const Fixed &other) const
+{
+	Fixed result;
+	result.setRawBits(_fixed - other.getRawBits());
+	return (result);
+}
