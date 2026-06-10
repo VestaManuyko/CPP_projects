@@ -24,11 +24,6 @@ int main()
 	std::cout << "b is " << b.toFloat() << " as float" << std::endl;
 	std::cout << "c is " << c.toFloat() << " as float" << std::endl;
 	std::cout << "d is " << d.toFloat() << " as float" << std::endl;
-	std::cout << "\nOverflow testing:" << std::endl;
-	a = Fixed((INT_MAX / 256) + 1);
-	b = Fixed(((float)INT_MIN / 256.0f) - 1.0f);
-	std::cout << "a is " << a << std::endl;
-	std::cout << "b is " << b << std::endl;
 	std::cout << std::endl;
 	return 0;
 }
