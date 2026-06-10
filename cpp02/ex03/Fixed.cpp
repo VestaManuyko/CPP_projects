@@ -7,35 +7,11 @@ Fixed::Fixed()
 
 Fixed::Fixed(const int value)
 {
-	if (value > INT_MAX / 256)
-	{
-		std::cout << "Value exceeds max, set to INT_MAX" << std::endl;
-		_fixed = INT_MAX;
-		return ;
-	}
-	if (value < INT_MIN / 256)
-	{
-		std::cout << "Value exceeds min, set to INT_MIN" << std::endl;
-		_fixed = INT_MIN;
-		return ;
-	}
 	_fixed = value << _fractionalBits;
 }
 
 Fixed::Fixed(const float value)
 {
-	if (value > (float)INT_MAX / 256.0f)
-	{
-		std::cout << "Value exceeds max, set to INT_MAX" << std::endl;
-		_fixed = INT_MAX;
-		return ;
-	}
-	if (value < (float)INT_MIN / 256.0f)
-	{
-		std::cout << "Value exceeds min, set to INT_MIN" << std::endl;
-		_fixed = INT_MIN;
-		return ;
-	}
 	_fixed = roundf(value * 256);
 }
 
