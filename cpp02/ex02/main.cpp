@@ -172,6 +172,5 @@ int main(int argc, char **argv)
 		std::cerr << "Available tests: comparison, arithmetic, increment, minmax, subject\n";
 		return 1;
 	}
-
 	return 0;
 }
