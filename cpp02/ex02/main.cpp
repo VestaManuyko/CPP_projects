@@ -1,6 +1,6 @@
 #include "Fixed.hpp"
 
-int main()
+void	comparisonTests()
 {
 	Fixed a(10);
 	Fixed b(10.75f);
@@ -53,6 +53,25 @@ int main()
 	std::cout << "\nTesting zero equality and mixed comparisons" << std::endl;
 	std::cout << "z1: " << z1 << ", z2: " << z2 << std::endl;
 	std::cout << "z1 == z2: " << (z1 == z2) << std::endl;
+	std::cout << std::noboolalpha;
+}
+
+void	arithmeticTests()
+{
+	Fixed a(10);
+	Fixed b(10.75f);
+	Fixed res;
+
+	res = a + b;
+	std::cout << res << std::endl;
+	res = res - b;
+	std::cout << res << std::endl;
+}
+
+int main()
+{
+	comparisonTests();
+	arithmeticTests();
 
 	return 0;
 }
