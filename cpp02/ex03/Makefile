@@ -32,4 +32,9 @@ re: fclean all
 
 .PHONY: all clean fclean re
 
+.PHONY: test
+
+test: $(OBJ_DIR)
+	@$(CC) $(CFLAGS) Fixed.cpp Point.cpp bsp.cpp tests_bsp.cpp -o bsp_test
+
 -include $(DEP)
