@@ -81,9 +81,32 @@ std::ostream & operator<<(std::ostream &stream, const Fixed &fixed)
 	return (stream);
 }
 
-bool	operator<(const Fixed &a, const Fixed &b)
+bool	Fixed::operator<(const Fixed &other) const
 {
-	if (a.getRawBits() < b.getRawBits())
-		return 1;
-	return 0;
+	return (_fixed < other.getRawBits());
+}
+
+bool	Fixed::operator>(const Fixed &other) const
+{
+	return (_fixed > other.getRawBits());
+}
+
+bool	Fixed::operator>=(const Fixed &other) const
+{
+	return (_fixed >= other.getRawBits());
+}
+
+bool	Fixed::operator<=(const Fixed &other) const
+{
+	return (_fixed <= other.getRawBits());
+}
+
+bool	Fixed::operator==(const Fixed &other) const
+{
+	return (_fixed == other.getRawBits());
+}
+
+bool	Fixed::operator!=(const Fixed &other) const
+{
+	return (_fixed != other.getRawBits());
 }

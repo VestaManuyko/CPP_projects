@@ -21,12 +21,18 @@ class Fixed
 		float	toFloat() const;
 		int		toInt() const;
 
+		bool	operator<(const Fixed &other) const;
+		bool	operator>(const Fixed &other) const;
+		bool	operator>=(const Fixed &other) const;
+		bool	operator<=(const Fixed &other) const;
+		bool	operator==(const Fixed &other) const;
+		bool	operator!=(const Fixed &other) const;
+
 		private:
 		int					_fixed;
 		static const int	_fractionalBits = 8;
 	};
 	
 	std::ostream & operator<<(std::ostream &stream, const Fixed &fixed);
-	bool	operator<(const Fixed &a, const Fixed &b);
 
 #endif
