@@ -135,7 +135,7 @@ Fixed	Fixed::operator*(const Fixed &other) const
 Fixed	Fixed::operator/(const Fixed &other) const
 {
 	Fixed result;
-	result.setRawBits((_fixed / other.getRawBits()) * 256);
+	result.setRawBits((_fixed * 256) / other.getRawBits());
 	return (result);
 }
 
@@ -145,7 +145,52 @@ Fixed	&Fixed::operator++()
 	return (*this);
 }
 
-// void	Fixed::operator--()
-// {
-// 	setRawBits(getRawBits() - 1);
-// }
+Fixed	&Fixed::operator--()
+{
+	_fixed -= 1;
+	return (*this);
+}
+
+Fixed	Fixed::operator++(int unused)
+{
+	(void)unused;
+	Fixed	ret = *this;
+	_fixed += 1;
+	return (ret);
+}
+
+Fixed	Fixed::operator--(int unused)
+{
+	(void)unused;
+	Fixed	ret = *this;
+	_fixed -= 1;
+	return (ret);
+}
+
+Fixed &Fixed::min(Fixed &a, Fixed &b)
+{
+	if (a._fixed < b._fixed)
+		return a;
+	return b;
+}
+
+Fixed &Fixed::max(Fixed &a, Fixed &b)
+{
+	if (a._fixed > b._fixed)
+		return a;
+	return b;
+}
+
+const Fixed &Fixed::min(Fixed const &a, Fixed const &b)
+{
+	if (a._fixed < b._fixed)
+		return a;
+	return b;
+}
+
+const Fixed &Fixed::max(Fixed const &a, Fixed const &b)
+{
+	if (a._fixed > b._fixed)
+		return a;
+	return b;
+}
