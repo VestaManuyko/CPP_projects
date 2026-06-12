@@ -15,12 +15,6 @@ class ScavTrap : public ClapTrap
 	
 	void 	attack(const std::string &target);
 	void	guardGate();
-
-	private:
-		std::string 	_name;
-		unsigned int	_hitPoints;
-		unsigned int	_energyPoints;
-		unsigned int	_attackDamage;
 };
 
 #endif
