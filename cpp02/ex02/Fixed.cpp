@@ -12,7 +12,7 @@ Fixed::Fixed(const int value)
 
 Fixed::Fixed(const float value)
 {
-	_fixed = roundf(value * 256);
+	_fixed = roundf(value * (1 << _fractionalBits));
 }
 
 Fixed::~Fixed()
@@ -43,12 +43,12 @@ void Fixed::setRawBits(const int raw)
 
 float	Fixed::toFloat() const
 {
-	return (_fixed / 256.0f);
+	return (static_cast<float>(_fixed) / (1 << _fractionalBits));
 }
 
 int	Fixed::toInt() const
 {
-	return (_fixed / 256);
+	return (_fixed >> _fractionalBits);
 }
 
 std::ostream & operator<<(std::ostream &stream, const Fixed &fixed)
@@ -104,14 +104,14 @@ Fixed	Fixed::operator-(const Fixed &other) const
 Fixed	Fixed::operator*(const Fixed &other) const
 {
 	Fixed result;
-	result.setRawBits((_fixed * other.getRawBits()) / 256);
+	result.setRawBits((_fixed * other.getRawBits()) / (1 << _fractionalBits));
 	return (result);
 }
 
 Fixed	Fixed::operator/(const Fixed &other) const
 {
 	Fixed result;
-	result.setRawBits((_fixed * 256) / other.getRawBits());
+	result.setRawBits((_fixed * (1 << _fractionalBits)) / other.getRawBits());
 	return (result);
 }
 

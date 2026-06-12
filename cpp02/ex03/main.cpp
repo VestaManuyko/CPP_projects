@@ -24,52 +24,52 @@ int main()
 	std::cout << std::boolalpha;
 
 	// Integer coordinates: inside
-	run_test("Inside integer",
+	run_test("Inside triangle",
 			 true,
-			 Point(Fixed(0), Fixed(0)),
-			 Point(Fixed(5), Fixed(0)),
-			 Point(Fixed(0), Fixed(5)),
-			 Point(Fixed(1), Fixed(1)));
+		 Point(0.0f, 0.0f),
+		 Point(5.0f, 0.0f),
+		 Point(0.0f, 5.0f),
+		 Point(1.0f, 1.0f));
 
 	// Integer coordinates: outside
-	run_test("Outside integer",
+	run_test("Outside triangle",
 			 false,
-			 Point(Fixed(0), Fixed(0)),
-			 Point(Fixed(2), Fixed(0)),
-			 Point(Fixed(0), Fixed(2)),
-			 Point(Fixed(3), Fixed(3)));
+			 Point(0.0f, 0.0f),
+			 Point(2.0f, 0.0f),
+			 Point(0.0f, 2.0f),
+			 Point(3.0f, 3.0f));
 
 	// On vertex
 	run_test("On vertex (A)",
 			 false,
-			 Point(Fixed(0), Fixed(0)),
-			 Point(Fixed(2), Fixed(0)),
-			 Point(Fixed(0), Fixed(2)),
-			 Point(Fixed(0), Fixed(0)));
+			 Point(0.0f, 0.0f),
+			 Point(2.0f, 0.0f),
+			 Point(0.0f, 2.0f),
+			 Point(0.0f, 0.0f));
 
 	// On edge (between A and B)
 	run_test("On edge AB",
 			 false,
-			 Point(Fixed(0), Fixed(0)),
-			 Point(Fixed(2), Fixed(0)),
-			 Point(Fixed(0), Fixed(2)),
-			 Point(Fixed(1), Fixed(0)));
+			 Point(0.0f, 0.0f),
+			 Point(2.0f, 0.0f),
+			 Point(0.0f, 2.0f),
+			 Point(1.0f, 0.0f));
 
 	// Float coordinates: inside
-	run_test("Inside float",
+	run_test("Inside triangle",
 			 true,
-			 Point(Fixed(0.5f), Fixed(0.5f)),
-			 Point(Fixed(2.5f), Fixed(0.5f)),
-			 Point(Fixed(0.5f), Fixed(2.5f)),
-			 Point(Fixed(1.0f), Fixed(1.0f)));
+			 Point(0.5f, 0.5f),
+			 Point(2.5f, 0.5f),
+			 Point(0.5f, 2.5f),
+			 Point(1.0f, 1.0f));
 
 	// Mixed int/float coordinates
-	run_test("Mixed int/float",
+	run_test("Iside triangle",
 			 true,
-			 Point(Fixed(0), Fixed(0.0f)),
-			 Point(Fixed(5.5f), Fixed(0)),
-			 Point(Fixed(0), Fixed(5.5f)),
-			 Point(Fixed(1.5f), Fixed(1)));
+			 Point(0.0f, 0.0f),
+			 Point(5.5f, 0.0f),
+			 Point(0.0f, 5.5f),
+			 Point(1.5f, 1.0f));
 
 	return 0;
 }
