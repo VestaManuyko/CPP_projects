@@ -1,4 +1,3 @@
-
 #include "ClapTrap.hpp"
 
 static void title(const std::string &s)
