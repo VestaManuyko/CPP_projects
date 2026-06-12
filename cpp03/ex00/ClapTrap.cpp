@@ -67,7 +67,10 @@ void	ClapTrap::takeDamage(unsigned int amount)
 {
 	std::cout << "ClapTrap " << _name << " receives "
 			<< amount << " points of damage!" << std::endl;
-	_hitPoints -= amount;
+	if (_hitPoints <= amount)
+		_hitPoints = 0;
+	else
+		_hitPoints -= amount;
 }
 
 void	ClapTrap::beRepaired(unsigned int amount)
@@ -77,10 +80,18 @@ void	ClapTrap::beRepaired(unsigned int amount)
 		std::cout << "No energy Points left, can't repair" << std::endl;
 		return ;
 	}
+	if (_hitPoints < 1)
+	{
+		std::cout << "No hit Points left, can't repair" << std::endl;
+		return ;
+	}
 	std::cout << "ClapTrap " << _name << " receives "
 			<< amount << " hit points!" << std::endl;
 	_energyPoints -= 1;
-	_hitPoints += amount;
+	if (std::numeric_limits<unsigned int>::max() - _hitPoints >= amount)
+		_hitPoints += amount;
+	else
+		_hitPoints = std::numeric_limits<unsigned int>::max();
 }
 
 const std::string &ClapTrap::getName() const

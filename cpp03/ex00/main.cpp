@@ -6,8 +6,8 @@ int main()
 	ClapTrap b("Rodger");
 
 	b.attack(a.getName());
-	b.takeDamage(20);
+	b.takeDamage(0);
 	b.attack(a.getName());
-	b.beRepaired(20);
+	b.beRepaired(2147483647);
 	b.attack(a.getName());
 }
