@@ -39,5 +39,5 @@ FragTrap::~FragTrap()
 
 void FragTrap::highFiveGuys()
 {
-	std::cout << "High-five request: positive!" << std::endl;
+	std::cout << "High-five request to " << _name << ": positive!" << std::endl;
 }
