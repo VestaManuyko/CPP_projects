@@ -5,7 +5,9 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 OBJ_DIR = obj
 
-SRC = main.cpp Animal.cpp Dog.cpp Cat.cpp WrongCat.cpp WrongAnimal.cpp
+SRC = main.cpp Animal.cpp Dog.cpp Cat.cpp \
+	WrongCat.cpp WrongAnimal.cpp \
+	Brain.cpp
 
 OBJ = $(SRC:%.cpp=obj/%.o)
 DEP = $(SRC:%.cpp=obj/%.d)
