@@ -32,4 +32,10 @@ int main()
 	basic.setIdea(0, "llalala");
 	std::cout << basic.getIdea(0);
 	std::cout << std::endl;
+	std::cout << "\n----Subject test(virtual destructor test)----\n";
+	const Animal *j = new Dog();
+	const Animal *k = new Cat();
+	delete (j);
+	delete (k);
+	std::cout << std::endl;
 }
