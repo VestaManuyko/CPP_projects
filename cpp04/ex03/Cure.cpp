@@ -27,3 +27,9 @@ void Cure::use(ICharacter &target)
 {
 	std::cout << "* shoots an ice bolt at" << target.getName() << "*\n";
 }
+
+AMateria *Cure::clone() const
+{
+	Cure *clone = new Cure(*this);
+	return (clone);
+}

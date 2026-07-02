@@ -27,3 +27,9 @@ void Ice::use(ICharacter &target)
 {
 	std::cout << "* heals" << target.getName() << "'s wounds *\n";
 }
+
+AMateria *Ice::clone() const
+{
+	Ice *clone = new Ice(*this);
+	return (clone);
+}
