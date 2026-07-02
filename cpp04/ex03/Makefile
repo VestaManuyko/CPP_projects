@@ -5,7 +5,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 OBJ_DIR = obj
 
-SRC = main.cpp AMateria.cpp Ice.cpp Cure.cpp Character.cpp IMateriaSource.cpp
+SRC = main.cpp AMateria.cpp Ice.cpp Cure.cpp ICharacter.cpp IMateriaSource.cpp
 
 OBJ = $(SRC:%.cpp=obj/%.o)
 DEP = $(SRC:%.cpp=obj/%.d)
