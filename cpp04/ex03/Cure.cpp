@@ -2,19 +2,16 @@
 
 Cure::Cure()
 {
-	_type = "cure";
 	return ;
 }
 
 Cure::Cure(const Cure& other)
 {
-	_type = other._type;
 	return ;
 }
 
 Cure& Cure::operator=(const Cure& other)
 {
-	_type = other._type;
 	return (*this);
 }
 
@@ -30,6 +27,5 @@ void Cure::use(ICharacter &target)
 
 AMateria *Cure::clone() const
 {
-	Cure *clone = new Cure(*this);
-	return (clone);
+	return new Cure(*this);
 }

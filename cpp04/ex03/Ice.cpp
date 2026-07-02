@@ -2,19 +2,16 @@
 
 Ice::Ice()
 {
-	_type = "ice";
 	return ;
 }
 
 Ice::Ice(const Ice& other)
 {
-	_type = other._type;
 	return ;
 }
 
 Ice& Ice::operator=(const Ice& other)
 {
-	_type = other._type;
 	return (*this);
 }
 
@@ -30,6 +27,5 @@ void Ice::use(ICharacter &target)
 
 AMateria *Ice::clone() const
 {
-	Ice *clone = new Ice(*this);
-	return (clone);
+	return new Ice(*this);
 }
