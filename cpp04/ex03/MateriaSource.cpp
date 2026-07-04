@@ -43,16 +43,23 @@ MateriaSource::~MateriaSource()
 	for (int i = 0; i < 4; i++)
 	{
 		if (_known[i] != NULL)
+		{
 			delete _known[i];
+		}
 	}
 	return ;
 }
 
 void MateriaSource::learnMateria(AMateria *m)
 {
-	if (_slot > 3 || m == NULL)
+	if (m == NULL)
 		return ;
-	_known[_slot] = m->clone();
+	if (_slot > 3)
+	{
+		delete m;
+		return ;
+	}
+	_known[_slot] = m;
 	_slot++;
 }
 
