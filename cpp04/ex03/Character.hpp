@@ -2,15 +2,29 @@
 # define CHARACTER_HPP
 
 #include "ICharacter.hpp"
+#include "AMateria.hpp"
 #include <iostream>
 
-class Character
+class Character : public ICharacter
 {
+	private:
+		std::string	_name;
+		AMateria	*_equipment[4];
+		int			_slot;
+
+		void	updateSlot();
+	
 	public:
     	Character();
+		Character(std::string name);
 		Character(const Character& other); 
 		Character& operator=(const Character& other);
 		~Character();
+
+	std::string const & getName() const;
+	void equip(AMateria* m);
+	void unequip(int idx);
+	void use(int idx, ICharacter& target);
 };
 
 #endif

@@ -2,20 +2,86 @@
 
 Character::Character()
 {
+	_name = "no name";
+	_slot = 0;
+	for (int i = 0; i < 4; i++)
+		_equipment[i] = NULL;
+	return ;
+}
+
+Character::Character(std::string name) : _name(name), _slot(0)
+{
+	for (int i = 0; i < 4; i++)
+		_equipment[i] = NULL;
 	return ;
 }
 
 Character::Character(const Character& other)
 {
+	_name = other._name;
+	for (int i = 0; i < 4; i++)
+	{
+		if (other._equipment[i] != NULL)
+		{
+			if (_equipment[i] != NULL)
+				delete _equipment[i];
+			_equipment[i] = other._equipment[i]->clone();
+			_slot++;
+		}
+	}
 	return ;
 }
 
 Character& Character::operator=(const Character& other)
 {
+	_name = other._name;
+	for (int i = 0; i < 4; i++)
+	{
+		if (other._equipment[i] != NULL)
+		{
+			if (_equipment[i] != NULL)
+				delete _equipment[i];
+			_equipment[i] = other._equipment[i]->clone();
+			_slot++;
+		}
+	}
 	return (*this);
 }
 
 Character::~Character()
 {
+	for (int i = 0; i < 4; i++)
+	{
+		if (_equipment[i] != NULL)
+			delete _equipment[i];
+	}
 	return ;
+}
+
+std::string const &Character::getName() const
+{
+	return _name;
+}
+
+void	Character::equip(AMateria *m)
+{
+	if (_slot > 3 || m == NULL)
+		return ;
+	if (_equipment[_slot] != NULL)
+		delete _equipment[_slot];
+	_equipment[_slot] = m->clone();
+}
+
+void Character::unequip(int idx)
+{
+	if (idx < 0 || idx > 3 || _equipment[idx] == NULL)
+		return ;
+	_equipment[idx] = NULL;
+}
+
+void Character::use(int idx, ICharacter &target)
+{
+	if (idx < 0 || idx > 3 || _equipment[idx] == NULL)
+		return ;
+	_equipment[idx]->use(target);
 }
