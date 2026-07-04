@@ -86,3 +86,10 @@ void Character::use(int idx, ICharacter &target)
 		return ;
 	_equipment[idx]->use(target);
 }
+
+AMateria *Character::getMateria(int idx) const
+{
+	if (idx < 0 || idx > 3)
+		return NULL;
+	return (_equipment[idx]);
+}
