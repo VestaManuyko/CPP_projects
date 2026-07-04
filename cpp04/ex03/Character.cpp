@@ -65,7 +65,6 @@ std::string const &Character::getName() const
 
 void	Character::equip(AMateria *m)
 {
-	std::cout << _slot << std::endl;
 	if (_slot > 3 || m == NULL)
 		return ;
 	_equipment[_slot] = m->clone();

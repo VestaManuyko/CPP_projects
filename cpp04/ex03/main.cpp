@@ -6,8 +6,14 @@
 #include "Character.hpp"
 #include "MateriaSource.hpp"
 
+static void title(const std::string &s)
+{
+    std::cout << "=== " << s << " ===" << std::endl;
+}
+
 int main()
 {
+	title("Subject test");
 	IMateriaSource* src = new MateriaSource();
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());

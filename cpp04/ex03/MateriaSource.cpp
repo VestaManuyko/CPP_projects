@@ -53,6 +53,7 @@ void MateriaSource::learnMateria(AMateria *m)
 	if (_slot > 3 || m == NULL)
 		return ;
 	_known[_slot] = m->clone();
+	_slot++;
 }
 
 AMateria *MateriaSource::createMateria(std::string const &type)
