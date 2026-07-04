@@ -78,6 +78,9 @@ void Character::unequip(int idx)
 	if (idx < 0 || idx > 3 || _equipment[idx] == NULL)
 		return ;
 	_equipment[idx] = NULL;
+	_slot--;
+	if (_slot < 0)
+		_slot = 0;
 }
 
 void Character::use(int idx, ICharacter &target)
