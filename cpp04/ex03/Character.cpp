@@ -65,9 +65,11 @@ std::string const &Character::getName() const
 
 void	Character::equip(AMateria *m)
 {
+	std::cout << _slot << std::endl;
 	if (_slot > 3 || m == NULL)
 		return ;
 	_equipment[_slot] = m->clone();
+	_slot++;
 }
 //Before calling uneqip, make sure to save the address of the materia,
 //that you are about to unequip and later delete it to avoid memory leaks.
