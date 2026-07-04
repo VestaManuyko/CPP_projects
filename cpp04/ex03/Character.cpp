@@ -67,8 +67,6 @@ void	Character::equip(AMateria *m)
 {
 	if (_slot > 3 || m == NULL)
 		return ;
-	if (_equipment[_slot] != NULL)
-		delete _equipment[_slot];
 	_equipment[_slot] = m->clone();
 }
 //Before calling uneqip, make sure to save the address of the materia,
