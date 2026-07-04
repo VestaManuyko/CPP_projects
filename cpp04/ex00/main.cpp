@@ -7,8 +7,8 @@
 int main()
 {
 	const Animal* meta = new Animal();
-	Animal* j = new Dog();
-	Animal* i = new Cat();
+	const Animal* j = new Dog();
+	const Animal* i = new Cat();
 	Animal	copy(*meta);
 	copy = *meta;
 	std::cout << std::endl;

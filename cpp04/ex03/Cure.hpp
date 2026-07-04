@@ -9,10 +9,10 @@ class Cure : public AMateria
     	Cure();
 		Cure(const Cure& other); 
 		Cure& operator=(const Cure& other);
-		~Cure();
+		~Cure() override;
 
-		void use(ICharacter &target);
-		AMateria *clone() const;
+		void use(ICharacter &target) override;
+		AMateria *clone() const override;
 };
 
 #endif

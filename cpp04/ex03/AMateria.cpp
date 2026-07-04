@@ -5,7 +5,7 @@ AMateria::AMateria()
 	return ;
 }
 
-AMateria::AMateria(const AMateria& other)
+AMateria::AMateria(const AMateria& other) : _type(other._type)
 {
 	return ;
 }

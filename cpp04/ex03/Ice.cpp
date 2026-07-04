@@ -1,17 +1,18 @@
 #include "Ice.hpp"
 
-Ice::Ice()
+Ice::Ice() : AMateria("ice")
 {
 	return ;
 }
 
-Ice::Ice(const Ice& other)
+Ice::Ice(const Ice& other) : AMateria(other)
 {
 	return ;
 }
 
 Ice& Ice::operator=(const Ice& other)
 {
+	AMateria::operator=(other);
 	return (*this);
 }
 

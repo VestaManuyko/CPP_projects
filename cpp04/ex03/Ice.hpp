@@ -9,10 +9,10 @@ class Ice : public AMateria
     	Ice();
 		Ice(const Ice& other); 
 		Ice& operator=(const Ice& other);
-		~Ice();
+		~Ice() override;
 
-		void use(ICharacter &target);
-		AMateria *clone() const;
+		void use(ICharacter &target) override;
+		AMateria *clone() const override;
 };
 
 #endif
