@@ -71,7 +71,8 @@ void	Character::equip(AMateria *m)
 		delete _equipment[_slot];
 	_equipment[_slot] = m->clone();
 }
-
+//Before calling uneqip, make sure to save the address of the materia,
+//that you are about to unequip and later delete it to avoid memory leaks.
 void Character::unequip(int idx)
 {
 	if (idx < 0 || idx > 3 || _equipment[idx] == NULL)
