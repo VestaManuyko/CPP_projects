@@ -1,7 +1,9 @@
 #include "Form.hpp"
+#include "Bureaucrat.hpp"
 
 Form::Form() : _name("default"), _reqToSign(1), _reqToExecute(150)
 {
+	std::cout << "Default form is creted with grades: 1, 150\n";
 	_signed = false;
 	return ;
 }
@@ -23,6 +25,7 @@ Form::Form(std::string name, int reqToSign, int reqToExecute) : _name(name), _re
 		throw GradeTooHighException();
 	if (reqToExecute > 150)
 		throw GradeTooLowException();
+	std::cout << "Form with these parameters: name- " << name  << ", required grade to sign- " << reqToSign << ", to execute- " << reqToExecute << ", was created." << std::endl;
 	return ;
 }
 
@@ -66,13 +69,14 @@ const char* Form::GradeTooLowException::what() const throw()
 
 std::ostream &operator<<(std::ostream &stream, const Form &form)
 {
-	std::cout << form.getName() << " is ";
+	stream << form.getName() << " is ";
 	if (form.getSigned() == true)
-		std::cout << "signed";
+		stream << "signed.";
 	else
-		std::cout << "unsigned";
-	std::cout << std::endl;
-	std::cout << "The required grade to sign is " << form.getReqToSign() << " and to execute is " << form.getReqToExecute() << std::endl;
+		stream << "unsigned.";
+	stream << std::endl;
+	stream << "The required grade to sign is " << form.getReqToSign() << " and to execute is " << form.getReqToExecute() << "." << std::endl;
+	return stream;
 }
 
 void	Form::beSigned(Bureaucrat const &skippy)
