@@ -35,4 +35,6 @@ class Form
 
 };
 
+std::ostream &operator<<(std::ostream &stream, const Form &form);
+
 #endif

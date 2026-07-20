@@ -15,6 +15,14 @@ Form::Form(const Form& other) : _name(other._name), _reqToSign(other._reqToSign)
 Form::Form(std::string name, int reqToSign, int reqToExecute) : _name(name), _reqToSign(reqToSign), _reqToExecute(reqToExecute)
 {
 	_signed = false;
+	if (reqToSign < 1)
+		throw GradeTooHighException();
+	if (reqToSign > 150)
+		throw GradeTooLowException();
+	if (reqToExecute < 1)
+		throw GradeTooHighException();
+	if (reqToExecute > 150)
+		throw GradeTooLowException();
 	return ;
 }
 
@@ -54,4 +62,15 @@ const char* Form::GradeTooHighException::what() const throw()
 const char* Form::GradeTooLowException::what() const throw()
 {
 	return "Exception: Grade too low!";
+}
+
+std::ostream &operator<<(std::ostream &stream, const Form &form)
+{
+	std::cout << form.getName() << " is ";
+	if (form.getSigned() == true)
+		std::cout << "signed";
+	else
+		std::cout << "unsigned";
+	std::cout << std::endl;
+	std::cout << "The required grade to sign is " << form.getReqToSign() << " and to execute is " << form.getReqToExecute() << std::endl;
 }
