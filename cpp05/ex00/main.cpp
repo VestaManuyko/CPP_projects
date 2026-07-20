@@ -19,6 +19,16 @@ int main()
 	{
 		std::cerr << e.what() << std::endl << std::endl;
 	}
+	Bureaucrat def;
+	try
+	{
+		def.decrementGrade();
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl << std::endl;
+	}
+	
 	title("Too high grade parameter");
 	try
 	{
