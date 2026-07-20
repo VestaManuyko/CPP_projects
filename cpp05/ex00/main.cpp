@@ -2,7 +2,7 @@
 
 static void title(const std::string &s)
 {
-    std::cout << std::endl << "=== " << s << " ===" << std::endl << std::endl;
+    std::cout << "=== " << s << " ===" << std::endl;
 }
 
 int main()
@@ -17,7 +17,7 @@ int main()
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << e.what() << std::endl << std::endl;
 	}
 	title("Too high grade parameter");
 	try
@@ -26,7 +26,7 @@ int main()
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << std::endl;
+		std::cerr << e.what() << std::endl << std::endl;
 	}
 	title("Too Low grade parameter");
 	try
@@ -35,7 +35,7 @@ int main()
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << std::endl;
+		std::cerr << e.what() << std::endl << std::endl;
 	}
 	title("<< operator overload");
 	std::cout << slippy;
