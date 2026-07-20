@@ -63,3 +63,13 @@ void Bureaucrat::decrementGrade()
 	if (_grade > 150)
 		gradeTooLow();
 }
+
+std::string const &Bureaucrat::getName() const
+{
+	return _name;
+}
+
+int const &Bureaucrat::getGrade() const
+{
+	return _grade;
+}
