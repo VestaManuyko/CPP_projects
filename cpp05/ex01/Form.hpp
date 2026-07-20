@@ -2,6 +2,7 @@
 # define FORM_HPP
 
 #include <iostream>
+#include "Bureaucrat.hpp"
 
 class Form
 {
@@ -17,10 +18,11 @@ class Form
 		Form& operator=(const Form& other);
 		~Form();
 
-	const std::string &getName() const;
-	const int &getReqToSign() const;
-	const int &getReqToExecute() const;
-	const bool &getSigned() const;
+	const std::string 	&getName() const;
+	const int 			&getReqToSign() const;
+	const int 			&getReqToExecute() const;
+	const bool 			&getSigned() const;
+	void				beSigned(Bureaucrat const&skippy);
 
 	class GradeTooHighException : public std::exception
 	{

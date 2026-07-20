@@ -74,3 +74,10 @@ std::ostream &operator<<(std::ostream &stream, const Form &form)
 	std::cout << std::endl;
 	std::cout << "The required grade to sign is " << form.getReqToSign() << " and to execute is " << form.getReqToExecute() << std::endl;
 }
+
+void	Form::beSigned(Bureaucrat const &skippy)
+{
+	if (skippy.getGrade() > _reqToSign)
+		throw GradeTooLowException();
+	_signed = true;
+}
