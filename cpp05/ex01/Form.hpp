@@ -22,7 +22,7 @@ class Form
 	const int 			&getReqToSign() const;
 	const int 			&getReqToExecute() const;
 	const bool 			&getSigned() const;
-	void				beSigned(Bureaucrat const&skippy);
+	void				beSigned(Bureaucrat const &skippy);
 
 	class GradeTooHighException : public std::exception
 	{
