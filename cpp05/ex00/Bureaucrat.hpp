@@ -9,9 +9,6 @@ class Bureaucrat
 		std::string const	_name;
 		int					_grade;
 
-	void	gradeTooHigh()	const;
-	void	gradeTooLow()	const;
-
 	public:
     	Bureaucrat();
 		Bureaucrat(std::string name, int grade);
