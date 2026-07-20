@@ -12,7 +12,9 @@ int main()
 	try
 	{
 		slippy.decrementGrade();
+		std::cout << slippy;
 		slippy.incrementGrade();
+		std::cout << slippy;
 		slippy.incrementGrade();
 	}
 	catch(const std::exception& e)
