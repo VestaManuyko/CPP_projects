@@ -24,3 +24,8 @@ RobotomyRequestForm::~RobotomyRequestForm()
 {
 	return ;
 }
+
+void	RobotomyRequestForm::executeForm(Bureaucrat const &executor) const
+{
+
+}

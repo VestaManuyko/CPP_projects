@@ -1,4 +1,5 @@
 #include "ShrubberyCreationForm.hpp"
+#include <fstream>
 
 ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShrubberyCreation", 145, 137)
 {
@@ -24,4 +25,18 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
 	return ;
+}
+
+void	ShrubberyCreationForm::executeForm(Bureaucrat const &executor) const
+{
+	std::string filename = _target + "_shrubbery";
+	std::ofstream newFile(filename);
+	if (newFile.is_open() == false)
+	{
+		std::cerr << "Could not create file: " 
+                  << filename << std::endl;
+        return;
+	}
+	newFile << "       *\n      ***\n     *****\n    *******\n   *********\n      |||\n      |||";
+	newFile.close();
 }
