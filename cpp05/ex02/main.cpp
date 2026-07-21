@@ -6,6 +6,7 @@
 
 static void title(const std::string &s)
 {
+	std::cout << std::endl;
     std::cout << "=== " << s << " ===" << std::endl;
 }
 
@@ -66,6 +67,19 @@ int main()
 		bip.signForm(pardon);
 		bip.executeForm(pardon);
 		john.executeForm(pardon);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	title("copy check");
+	try
+	{
+		ShrubberyCreationForm a("mama");
+		shrub = a;
+		bip.executeForm(shrub);
+		bip.signForm(shrub);
+		bip.executeForm(shrub);
 	}
 	catch(const std::exception& e)
 	{
