@@ -27,7 +27,7 @@ class AForm
 	const int 			&getReqToExecute() const;
 	const bool 			&isSigned() const;
 	void				beSigned(Bureaucrat const &skippy);
-	void				execute(Bureaucrat const &executor);
+	void				execute(Bureaucrat const &executor) const;
 
 	class GradeTooHighException : public std::exception
 	{
