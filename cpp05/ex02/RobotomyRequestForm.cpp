@@ -14,12 +14,13 @@ RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("RobotomyRe
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other) : AForm(other)
 {
+	_target = other._target;
 	return ;
 }
 
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& other)
 {
-	(void)other;
+	_target = other._target;
 	return (*this);
 }
 

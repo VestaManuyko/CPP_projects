@@ -14,12 +14,13 @@ ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("Shrubb
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other) : AForm(other)
 {
+	_target = other._target;
 	return ;
 }
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& other)
 {
-	(void)other;
+	_target = other._target;
 	return (*this);
 }
 

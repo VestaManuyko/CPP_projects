@@ -14,12 +14,13 @@ PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("Pres
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other) : AForm(other)
 {
+	_target = other._target;
 	return ;
 }
 
 PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& other)
 {
-	(void)other;
+	_target = other._target;
 	return (*this);
 }
 
