@@ -1,7 +1,7 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
-#include "PresidentalPardonForm.hpp"
+#include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 
 static void title(const std::string &s)
@@ -52,7 +52,7 @@ int main()
 		std::cerr << e.what() << std::endl;
 	}
 	title("President form");
-	PresidentalPardonForm pardon("the world");
+	PresidentialPardonForm pardon("the world");
 	Bureaucrat bip("Bip", 5);
 	try {
 		bip.executeForm(pardon);
