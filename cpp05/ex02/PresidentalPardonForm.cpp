@@ -5,6 +5,12 @@ PresidentalPardonForm::PresidentalPardonForm() : AForm("PresidentalPardon", 25, 
 	return ;
 }
 
+PresidentalPardonForm::PresidentalPardonForm(std::string target) : AForm("PresidentalForm", 25, 5)
+{
+	_target = target;
+	return ;
+}
+
 PresidentalPardonForm::PresidentalPardonForm(const PresidentalPardonForm& other) : AForm(other)
 {
 	return ;
