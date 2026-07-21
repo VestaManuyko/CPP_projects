@@ -52,7 +52,7 @@ const int &AForm::getReqToExecute() const
 {
 	return _reqToExecute;
 }
-const bool &AForm::getSigned() const
+const bool &AForm::isSigned() const
 {
 	return _signed;
 }
@@ -67,10 +67,15 @@ const char* AForm::GradeTooLowException::what() const throw()
 	return "Exception: Grade too low!";
 }
 
+const char* AForm::FormNotSigned::what() const throw()
+{
+	return "Exception: Form not signed!";
+}
+
 std::ostream &operator<<(std::ostream &stream, const AForm &Aform)
 {
 	stream << Aform.getName() << " is ";
-	if (Aform.getSigned() == true)
+	if (Aform.isSigned() == true)
 		stream << "signed.";
 	else
 		stream << "unsigned.";

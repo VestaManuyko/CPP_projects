@@ -11,6 +11,10 @@ class AForm
 		bool				_signed;
 		int const			_reqToSign;
 		int const			_reqToExecute;
+
+	protected:
+		virtual void 		executeForm(Bureaucrat const &executor) const = 0;
+
 	public:
     	AForm();
 		AForm(std::string name, int reqToSign, int reqToExecute);
@@ -21,9 +25,9 @@ class AForm
 	const std::string 	&getName() const;
 	const int 			&getReqToSign() const;
 	const int 			&getReqToExecute() const;
-	const bool 			&getSigned() const;
+	const bool 			&isSigned() const;
 	void				beSigned(Bureaucrat const &skippy);
-	virtual void 		execute(Bureaucrat const &executor) const = 0;
+	void				execute(Bureaucrat const &executor);
 
 	class GradeTooHighException : public std::exception
 	{
@@ -32,10 +36,14 @@ class AForm
 	};
 	class GradeTooLowException : public std::exception
 	{
-	public:
-		const char* what() const throw();
+		public:
+			const char* what() const throw();
 	};
-
+	class FormNotSigned : public std::exception
+	{
+		public:
+			const char* what() const throw();
+	};
 };
 
 std::ostream &operator<<(std::ostream &stream, const AForm &Aform);

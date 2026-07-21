@@ -3,6 +3,7 @@
 
 #include "AForm.hpp"
 #include <iostream>
+class Bureaucrat;
 
 class PresidentalPardonForm : public AForm
 {
@@ -14,6 +15,8 @@ class PresidentalPardonForm : public AForm
 		PresidentalPardonForm(const PresidentalPardonForm& other); 
 		PresidentalPardonForm& operator=(const PresidentalPardonForm& other);
 		~PresidentalPardonForm();
+
+		void	executeForm(Bureaucrat const &executor) const;
 };
 
 #endif
