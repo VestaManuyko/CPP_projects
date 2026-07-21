@@ -90,3 +90,12 @@ void	AForm::beSigned(Bureaucrat const &skippy)
 		throw GradeTooLowException();
 	_signed = true;
 }
+
+void	AForm::execute(Bureaucrat const &executor)
+{
+	if (executor.getGrade() > _reqToExecute)
+		throw GradeTooLowException();
+	if (_signed == false)
+		throw FormNotSigned();
+	executeForm();
+}
