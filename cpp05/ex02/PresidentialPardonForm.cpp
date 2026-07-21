@@ -1,7 +1,7 @@
 #include "PresidentialPardonForm.hpp"
 #include "Bureaucrat.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm() : AForm("PresidentalPardon", 25, 5)
+PresidentialPardonForm::PresidentialPardonForm() : AForm("PresidentalForm", 25, 5)
 {
 	return ;
 }
