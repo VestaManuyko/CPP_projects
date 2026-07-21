@@ -1,5 +1,5 @@
-#ifndef FORM_HPP
-# define FORM_HPP
+#ifndef AFORM_HPP
+# define AFORM_HPP
 
 #include <iostream>
 class Bureaucrat;
@@ -16,14 +16,14 @@ class AForm
 		AForm(std::string name, int reqToSign, int reqToExecute);
 		AForm(const AForm& other); 
 		AForm& operator=(const AForm& other);
-		~AForm();
+		virtual ~AForm();
 
 	const std::string 	&getName() const;
 	const int 			&getReqToSign() const;
 	const int 			&getReqToExecute() const;
 	const bool 			&getSigned() const;
 	void				beSigned(Bureaucrat const &skippy);
-	virtual void 		beExecuted() = 0;
+	virtual void 		execute(Bureaucrat const &executor) const = 0;
 
 	class GradeTooHighException : public std::exception
 	{
