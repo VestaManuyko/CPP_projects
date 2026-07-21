@@ -1,25 +1,25 @@
 #include "RobotomyRequestForm.hpp"
+#include <cstdlib>
 
 RobotomyRequestForm::RobotomyRequestForm() : AForm("RobotomyRequest", 72, 45)
 {
-	_success = false;
 	return ;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("RobotomyRequest", 72, 45)
 {
-	_success = false;
+	_target = target;
 	return ;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other) : AForm(other)
 {
-	_success = false;
 	return ;
 }
 
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& other)
 {
+	(void)other;
 	return (*this);
 }
 
@@ -28,17 +28,11 @@ RobotomyRequestForm::~RobotomyRequestForm()
 	return ;
 }
 
-void	RobotomyRequestForm::executeForm()
+void	RobotomyRequestForm::executeForm() const
 {
 	std::cout << "*drilling noises*" << std::endl;
-	if (_success == false)
-	{
+	if (rand() % 2)
 		std::cout << "Robotomy failed.\n";
-		_success = true;
-	}
 	else
-	{
 		std::cout << _target << " had been robotimized.\n";
-		_success = false;
-	}
 }

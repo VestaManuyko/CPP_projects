@@ -19,6 +19,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other)
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& other)
 {
+	(void)other;
 	return (*this);
 }
 
@@ -30,7 +31,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 void	ShrubberyCreationForm::executeForm() const
 {
 	std::string filename = _target + "_shrubbery";
-	std::ofstream newFile(filename);
+	std::ofstream newFile(filename.c_str());
 	if (newFile.is_open() == false)
 	{
 		std::cerr << "Could not create file: " 

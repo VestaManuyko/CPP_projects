@@ -8,7 +8,6 @@ class RobotomyRequestForm : public AForm
 {
 	private:
 		std::string		_target;
-		bool			_success;
 	public:
     	RobotomyRequestForm();
 		RobotomyRequestForm(std::string target);
@@ -16,7 +15,7 @@ class RobotomyRequestForm : public AForm
 		RobotomyRequestForm& operator=(const RobotomyRequestForm& other);
 		~RobotomyRequestForm();
 
-		void	executeForm();
+		void	executeForm() const;
 };
 
 #endif

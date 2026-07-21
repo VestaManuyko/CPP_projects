@@ -13,7 +13,7 @@ class AForm
 		int const			_reqToExecute;
 
 	protected:
-		virtual void 		executeForm() = 0;
+		virtual void 		executeForm() const = 0;
 
 	public:
     	AForm();
