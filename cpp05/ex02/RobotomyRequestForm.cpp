@@ -27,5 +27,6 @@ RobotomyRequestForm::~RobotomyRequestForm()
 
 void	RobotomyRequestForm::executeForm(Bureaucrat const &executor) const
 {
-
+	std::cout << "*drilling noises*" << std::endl;
+	
 }
