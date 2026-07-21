@@ -38,6 +38,6 @@ class AForm
 
 };
 
-std::ostream &operator<<(std::ostream &stream, const Form &form);
+std::ostream &operator<<(std::ostream &stream, const AForm &Aform);
 
 #endif
