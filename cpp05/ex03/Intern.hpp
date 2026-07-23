@@ -9,13 +9,21 @@
 
 class Intern
 {
+	private:
+		std::string	names[3];
+		AForm *(Intern::*creator[3])(std::string);
+
+	AForm *makePresident(std::string target);
+	AForm *makeRobotomy(std::string target);
+	AForm *makeShrubbery(std::string target);
+
 	public:
     	Intern();
 		Intern(const Intern& other); 
 		Intern& operator=(const Intern& other);
 		~Intern();
 
-	void	makeForm(std::string form, std::string target);
+	AForm	*makeForm(std::string form, std::string target);
 };
 
 #endif
