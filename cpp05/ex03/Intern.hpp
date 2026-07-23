@@ -11,11 +11,7 @@ class Intern
 {
 	private:
 		std::string	names[3];
-		AForm *(Intern::*creator[3])(std::string);
-
-	AForm *makePresident(std::string target);
-	AForm *makeRobotomy(std::string target);
-	AForm *makeShrubbery(std::string target);
+		AForm *(*creator[3])(std::string);
 
 	public:
     	Intern();
@@ -25,5 +21,9 @@ class Intern
 
 	AForm	*makeForm(std::string form, std::string target);
 };
+
+AForm *makePresident(std::string target);
+AForm *makeRobotomy(std::string target);
+AForm *makeShrubbery(std::string target);
 
 #endif
