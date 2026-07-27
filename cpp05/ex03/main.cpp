@@ -21,4 +21,6 @@ int main()
 	AForm *form1 = roberto.makeForm("robotomy requestt", "lalla");
 	if (form1 == NULL)
 		std::cout << "makeForm returned NULL" << std::endl;
+	delete form;
+	delete form1;
 }
