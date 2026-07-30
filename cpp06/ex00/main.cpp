@@ -1,0 +1,26 @@
+#include "ScalarConverter.hpp"
+
+static void title(const std::string &s)
+{
+	std::cout << std::endl;
+    std::cout << "=== " << s << " ===" << std::endl;
+}
+
+int main()
+{
+	ScalarConverter::convert("n");
+	std::cout << "_______________" << std::endl;
+	ScalarConverter::convert("5");
+	std::cout << "_______________" << std::endl;
+	ScalarConverter::convert("287398214812482104712094");
+	std::cout << "_______________" << std::endl;
+	ScalarConverter::convert("-1");
+	std::cout << "_______________" << std::endl;
+	ScalarConverter::convert("255");
+	std::cout << "_______________" << std::endl;
+	ScalarConverter::convert("nan");
+	std::cout << "_______________" << std::endl;
+	//since ä is decoded as 2 chars it doesnt run with current code, needs a fix.
+	ScalarConverter::convert("ä");
+	std::cout << "_______________" << std::endl;
+}
