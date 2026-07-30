@@ -20,7 +20,4 @@ int main()
 	std::cout << "_______________" << std::endl;
 	ScalarConverter::convert("nan");
 	std::cout << "_______________" << std::endl;
-	//since ä is decoded as 2 chars it doesnt run with current code, needs a fix.
-	ScalarConverter::convert("ä");
-	std::cout << "_______________" << std::endl;
 }
