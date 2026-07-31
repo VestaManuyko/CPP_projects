@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <limits>
 #include <cerrno>
+#include <string>
 
 ScalarConverter::ScalarConverter() {} ;
 
@@ -20,36 +21,32 @@ ScalarConverter::~ScalarConverter() {} ;
 
 void	ScalarConverter::convert(std::string literal)
 {
-	char 	*endptr = NULL;
-	errno = 0;
-	long	nbr = strtol(literal.c_str(), &endptr, 10);
-
-	if (errno != ERANGE)
+	double nbr;
+	int		int_nbr;
+	size_t idx;
+	try
 	{
-		if (endptr != NULL)
-		{
-			if (endptr[1] == '\0')
-				std::cout << "char: " << endptr[0] << std::endl;
-			else
-			{
-				if (endptr[0] == '\0' && nbr >= 0 && nbr <= 255 && !std::isprint(static_cast<unsigned char>(nbr)))
-					std::cout << "char: not displayable" << std::endl;
-				else
-					std::cout << "char: impossible1" << std::endl;
-			}
-			if (endptr[0] != '\0')
-				std::cout << "int: impossible1" << std::endl;
-			else
-			{
-				if (nbr < std::numeric_limits<int>::min() || nbr > std::numeric_limits<int>::max())
-					std::cout << "int: impossible2" << std::endl;
-				std::cout << "int: " << nbr << std::endl;
-			}
-		}
+		nbr = std::stod(literal, &idx);
+	}
+	catch(const std::exception& e)
+	{
+		if (literal.size() == 1)
+			std::cout << "char: " << literal << std::endl;
+		else
+			std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: impossible" << std::endl;
+		std::cout << "double: impossible" << std::endl;
+	}
+	if (nbr > std::numeric_limits<int>::min() || nbr < std::numeric_limits<int>::max())
+	{
+		int_nbr = static_cast<int>(nbr);
+		if (int_nbr >= 0 && int_nbr <= 255 && !std::isprint(static_cast<unsigned char>(int_nbr)))
+				std::cout << "char: not displayable" << std::endl;
+		else if (int_nbr < std::numeric_limits<char>::min() || int_nbr > std::numeric_limits<char>::max())
+			std::cout << "char: impossible" << std::endl;
+		std::cout << "int: " << int_nbr << std::endl;
 	}
 	else
-	{
-		std::cout << "char: impossible3" << std::endl;
-		std::cout << "int: impossible3" << std::endl;
-	}
+		std::cout << "int: impossible" << std::endl;
 }
