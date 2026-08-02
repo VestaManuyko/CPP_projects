@@ -2,6 +2,7 @@
 #include <limits>
 #include <cstdlib>
 #include <cerrno>
+#include <iomanip>
 
 ScalarConverter::ScalarConverter() {} ;
 
@@ -41,6 +42,9 @@ void	ScalarConverter::convert(std::string literal)
 		else
 			std::cout << "char: impossible" << std::endl;
 		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: impossible" << std::endl;
+		std::cout << "double: impossible" << std::endl;
+		return ;
 	}
 	else if (nbr >= std::numeric_limits<int>::min() && nbr <= std::numeric_limits<int>::max())
 	{
@@ -50,7 +54,7 @@ void	ScalarConverter::convert(std::string literal)
 		else if (int_nbr < std::numeric_limits<char>::min() || int_nbr > std::numeric_limits<char>::max())
 			std::cout << "char: impossible" << std::endl;
 		else
-			std::cout << "char: " << static_cast<char>(int_nbr) << std::endl;
+			std::cout << "char: '" << static_cast<char>(int_nbr) << "'" << std::endl;
 		std::cout << "int: " << int_nbr << std::endl;
 	}
 	else
@@ -58,4 +62,14 @@ void	ScalarConverter::convert(std::string literal)
 		std::cout << "char: impossible" << std::endl;
 		std::cout << "int: impossible" << std::endl;
 	}
+	if (nbr == std::numeric_limits<double>::infinity() ||
+        nbr == -std::numeric_limits<double>::infinity())
+	{
+		std::cout << "float: " << (nbr > 0 ? "inff" : "-inff") << std::endl;
+	}
+	else if (nbr < -std::numeric_limits<float>::max() || nbr > std::numeric_limits<float>::max())
+		std::cout << "float: impossible" << std::endl;
+	else
+		std::cout << "float: " << std::fixed << std::setprecision(1) << nbr << "f" << std::endl;
+	std::cout << "double: " << std::fixed << std::setprecision(1) << nbr << std::endl;
 }
