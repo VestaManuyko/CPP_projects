@@ -23,17 +23,26 @@ void	ScalarConverter::convert(std::string literal)
 	double	nbr;
 	int		int_nbr;
 	char	*endptr;
+	errno = 0;
 
 	nbr = std::strtod(literal.c_str(), &endptr);
+	if (errno == ERANGE)
+	{
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: impossible" << std::endl;
+		std::cout << "double: impossible" << std::endl;
+		return ;
+	}
 	if (endptr[0] != '\0')
 	{
 		if (literal.size() == 1 && isalpha(literal[0]))
-			std::cout << "char: " << literal << std::endl;
+			std::cout << "char: '" << literal << "'" << std::endl;
 		else
 			std::cout << "char: impossible" << std::endl;
 		std::cout << "int: impossible" << std::endl;
 	}
-	else if (nbr > std::numeric_limits<int>::min() || nbr < std::numeric_limits<int>::max())
+	else if (nbr >= std::numeric_limits<int>::min() && nbr <= std::numeric_limits<int>::max())
 	{
 		int_nbr = static_cast<int>(nbr);
 		if ((int_nbr >= std::numeric_limits<char>::min() && int_nbr <= std::numeric_limits<char>::max()) && !std::isprint(static_cast<unsigned char>(int_nbr)))
@@ -46,7 +55,7 @@ void	ScalarConverter::convert(std::string literal)
 	}
 	else
 	{
-		std::cout << "int: impossible" << std::endl;
 		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
 	}
 }
