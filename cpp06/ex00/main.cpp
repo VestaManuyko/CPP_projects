@@ -8,6 +8,7 @@ static void title(const std::string &s)
 
 int main()
 {
+	title("Tests");
 	ScalarConverter::convert("n");
 	std::cout << "_______________" << std::endl;
 	ScalarConverter::convert("5");
@@ -16,7 +17,7 @@ int main()
 	std::cout << "_______________" << std::endl;
 	ScalarConverter::convert("-1");
 	std::cout << "_______________" << std::endl;
-	ScalarConverter::convert("255");
+	ScalarConverter::convert("126");
 	std::cout << "_______________" << std::endl;
 	ScalarConverter::convert("nan");
 	std::cout << "_______________" << std::endl;
