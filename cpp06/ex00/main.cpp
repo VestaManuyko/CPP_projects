@@ -76,4 +76,7 @@ int main()
 
 	title("infx");
 	ScalarConverter::convert("infx");
+
+	title("*");
+	ScalarConverter::convert("*");
 }

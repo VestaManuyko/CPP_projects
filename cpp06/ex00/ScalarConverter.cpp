@@ -37,7 +37,7 @@ void	ScalarConverter::convert(std::string literal)
 	}
 	if (endptr[0] != '\0')
 	{
-		if (literal.size() == 1 && isalpha(literal[0]))
+		if (literal.size() == 1 && isprint(literal[0]))
 			std::cout << "char: '" << literal << "'" << std::endl;
 		else
 			std::cout << "char: impossible" << std::endl;
