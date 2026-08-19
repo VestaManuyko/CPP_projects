@@ -3,6 +3,14 @@
 
 #include <iostream>
 
+enum type{
+	CHAR,
+	INT,
+	FLOAT,
+	DOUBLE,
+	NONE
+};
+
 class ScalarConverter
 {
 	private:
