@@ -20,7 +20,7 @@ bool	isSpecial(std::string literal)
 
 type	getType(std::string literal)
 {
-	int 	i = 0;
+	unsigned long 	i = 0;
 
 	if (literal.size() == 1 && isalpha(literal[0]))
 		return CHAR;
@@ -53,87 +53,54 @@ type	getType(std::string literal)
 	return INT;
 }
 
-// void	convertChar(std::string literal)
-// {
-	
-// }
-
-// void	convertInt(std::string literal)
-// {
-
-// }
-
-// void	convertFloat(std::string literal)
-// {
-
-// }
-
-// void	convertDouble(std::string literal)
-// {
-
-// }
-
-// void	printSpecial(std::string literal)
-// {
-
-// }
-
-// void	printNone(std::string literal)
-// {
-
-// }
-
-// void	ScalarConverter::convert(std::string literal)
-// {
-// 	// void (*methods[])(std::string literal) = {
-// 	// 	&convertChar,
-// 	// 	&convertInt,
-// 	// 	&convertFloat,
-// 	// 	&convertDouble,
-// 	// 	&printSpecial,
-// 	// 	&printNone
-// 	// };
-// 	// type inputType = getType(literal);
-// 	// methods[inputType](literal);
-
-// }
-
-int main(int ac, char **argv)
+void	convertChar(std::string literal)
 {
-	if (ac != 2)
-		return 1;
-	switch (getType(argv[1]))
-	{
-		case 0:
-		{
-			std::cout << "CHAR";
-			break ;
-		}
-		case 1:
-		{
-			std::cout << "INT";
-			break ;
-		}
-		case 2:
-		{
-			std::cout << "FLOAT";
-			break ;
-		}
-		case 3:
-		{
-			std::cout << "DOUBLE";
-			break ;
-		}
-		case 4:
-		{
-			std::cout << "SPECIAL";
-			break ;
-		}
-		case 5:
-		{
-			std::cout << "NONE";
-			break ;
-		}
-	}
-	std::cout << std::endl;
+	(void)literal;
+}
+
+void	convertInt(std::string literal)
+{
+	(void)literal;
+}
+
+void	convertFloat(std::string literal)
+{
+	(void)literal;
+}
+
+void	convertDouble(std::string literal)
+{
+	(void)literal;
+}
+
+void	printSpecial(std::string literal)
+{
+	std::cout << "char: impossible" << std::endl;
+	std::cout << "int: impossible" << std::endl;
+	std::cout << "float: " << literal << 'f' << std::endl;
+	std::cout << "double: " << literal << std::endl;
+}
+
+void	printNone(std::string literal)
+{
+	(void)literal;
+	std::cout << "char: impossible" << std::endl;
+	std::cout << "int: impossible" << std::endl;
+	std::cout << "float: impossible" << std::endl;
+	std::cout << "double: impossible" << std::endl;
+}
+
+void	ScalarConverter::convert(std::string literal)
+{
+	void (*methods[])(std::string literal) = {
+		&convertChar,
+		&convertInt,
+		&convertFloat,
+		&convertDouble,
+		&printSpecial,
+		&printNone
+	};
+	type inputType = getType(literal);
+	methods[inputType](literal);
+
 }
