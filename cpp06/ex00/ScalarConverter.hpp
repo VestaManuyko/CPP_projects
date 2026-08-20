@@ -8,6 +8,7 @@ enum type{
 	INT,
 	FLOAT,
 	DOUBLE,
+	SPECIAL,
 	NONE
 };
 
