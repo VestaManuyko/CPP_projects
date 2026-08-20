@@ -22,7 +22,7 @@ type	getType(std::string literal)
 {
 	unsigned long 	i = 0;
 
-	if (literal.size() == 1 && isalpha(literal[0]))
+	if (literal.size() == 1 && isprint(literal[0]))
 		return CHAR;
 	while (literal[i])
 	{
@@ -55,7 +55,10 @@ type	getType(std::string literal)
 
 void	convertChar(std::string literal)
 {
-	(void)literal;
+	std::cout << "char: '" << literal << "'" << std::endl;
+	std::cout << "int: impossible" << std::endl;
+	std::cout << "float: impossible" << std::endl;
+	std::cout << "double: impossible" << std::endl;
 }
 
 void	convertInt(std::string literal)
