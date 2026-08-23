@@ -24,4 +24,11 @@ class ScalarConverter
 		static void	convert(std::string literal);
 };
 
+//print.cpp
+void	printNone(const std::string &literal);
+void	printSpecialFloat(const std::string &literal);
+void	printSpecialDouble(const std::string &literal);
+//getType.cpp
+type	getType(const std::string &literal);
+
 #endif
