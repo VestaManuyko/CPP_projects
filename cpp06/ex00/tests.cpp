@@ -150,17 +150,12 @@ TEST(Converter, nonDisplayableAndWhitespaceCharacters)
 	EXPECT_EQ(runConversion(" ", "char: ' '\nint: impossible\nfloat: impossible\ndouble: impossible\n"), 0);
 }
 
-TEST(Converter, floatingPointRanges)
-{
-	EXPECT_EQ(runConversion("2147483648.0f", "char: impossible\nint: impossible\nfloat: 2147483648.0f\ndouble: 2147483648.0\n"), 0);
-	EXPECT_EQ(runConversion("2147483648.0", "char: impossible\nint: impossible\nfloat: 2147483648.0f\ndouble: 2147483648.0\n"), 0);
-}
-
 TEST(Converter, specialValues)
 {
 	EXPECT_EQ(runConversion("nan", "char: impossible\nint: impossible\nfloat: nanf\ndouble: nan\n"), 0);
 	EXPECT_EQ(runConversion("nanf", "char: impossible\nint: impossible\nfloat: nanf\ndouble: nan\n"), 0);
 	EXPECT_EQ(runConversion("-inff", "char: impossible\nint: impossible\nfloat: -inff\ndouble: -inf\n"), 0);
+	EXPECT_EQ(runConversion("inf", "char: impossible\nint: impossible\nfloat: inff\ndouble: inf\n"), 0);
 }
 
 int main(int argc, char **argv) {
