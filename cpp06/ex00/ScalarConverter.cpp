@@ -97,7 +97,7 @@ void	convertInt(std::string literal)
 	{
     	c = static_cast<char>(n);
 		if (isprint(c))
-			std::cout << "char: " << c << std::endl;
+			std::cout << "char: '" << c << "'" << std::endl;
 		else
 			std::cout << "char: not displayable" << std::endl;
 	}
@@ -110,12 +110,61 @@ void	convertInt(std::string literal)
 
 void	convertFloat(std::string literal)
 {
-	(void)literal;
+	char c = 0;
+	errno = 0;
+	double nbr = std::strtof(literal.c_str(), NULL);
+	if (errno == ERANGE)
+	{
+		printNone(literal);
+		return ;
+	}
+	if (nbr >= std::numeric_limits<char>::min() && nbr <= std::numeric_limits<char>::max())
+	{
+    	c = static_cast<char>(nbr);
+		if (isprint(c))
+			std::cout << "char: '" << c << "'" << std::endl;
+		else
+			std::cout << "char: not displayable" << std::endl;
+	}
+	else
+		std::cout << "char: impossible" << std::endl;
+	if (nbr < std::numeric_limits<int>::min() || nbr > std::numeric_limits<int>::max())
+		std::cout << "int: impossible" << std::endl;
+	else
+		std::cout << "int: " << static_cast<int>(nbr) << std::endl;
+	std::cout << "float: " << std::fixed << std::setprecision(1) << nbr << "f" << std::endl;
+	std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(nbr) << std::endl;
 }
 
 void	convertDouble(std::string literal)
 {
-	(void)literal;
+	char c = 0;
+	errno = 0;
+	double nbr = std::strtod(literal.c_str(), NULL);
+	if (errno == ERANGE)
+	{
+		printNone(literal);
+		return ;
+	}
+	if (nbr >= std::numeric_limits<char>::min() && nbr <= std::numeric_limits<char>::max())
+	{
+    	c = static_cast<char>(nbr);
+		if (isprint(c))
+			std::cout << "char: '" << c << "'" << std::endl;
+		else
+			std::cout << "char: not displayable" << std::endl;
+	}
+	else
+		std::cout << "char: impossible" << std::endl;
+	if (nbr < std::numeric_limits<int>::min() || nbr > std::numeric_limits<int>::max())
+		std::cout << "int: impossible" << std::endl;
+	else
+		std::cout << "int: " << static_cast<int>(nbr) << std::endl;
+	if (nbr < -std::numeric_limits<float>::max() || nbr > std::numeric_limits<float>::max())
+		std::cout << "float: impossible" << std::endl;
+	else
+		std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(nbr) << "f" << std::endl;
+	std::cout << "double: " << std::fixed << std::setprecision(1) << nbr << std::endl;
 }
 
 void	ScalarConverter::convert(std::string literal)

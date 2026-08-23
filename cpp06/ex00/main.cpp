@@ -1,10 +1,10 @@
 #include "ScalarConverter.hpp"
 
-int main(int ac, char **argv)
+int main(int argc, char **argv)
 {
-	if (ac != 2)
+	if (argc != 2)
 	{
-		std::cout << "Invalid number of arguments.\n";
+		std::cout << "Invalid number of arguments." << std::endl;
 		return 1;
 	}
 	try
