@@ -8,6 +8,7 @@ TEST_LFLAGS = -I/usr/src/googletest/googletest/include \
 
 TEST_NAME = test
 OBJ_DIR = obj
+TEST_FILE = output.txt
 
 SRC = main.cpp ScalarConverter.cpp
 TEST_SRC = tests.cpp
@@ -36,7 +37,7 @@ $(TEST_NAME): $(NAME) $(OBJ_DIR) $(TEST_OBJ)
 	@$(CC) $(CFLAGS) $(TEST_OBJ) $(TEST_LFLAGS) -o $@
 
 clean:
-	@rm -f $(OBJ) $(DEP) $(TEST_OBJ) $(TEST_DEP)
+	@rm -f $(OBJ) $(DEP) $(TEST_OBJ) $(TEST_DEP) $(TEST_FILE)
 	@rm -rf $(OBJ_DIR)
 
 fclean: clean

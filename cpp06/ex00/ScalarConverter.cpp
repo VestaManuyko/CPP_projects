@@ -6,11 +6,11 @@
 
 bool	isSpecial(std::string literal)
 {
-	std::string	special[6] = {"nan", "nanf", "inf", "inff", "inf", "inff"};
+	std::string	special[4] = {"nan", "nanf", "inf", "inff"};
 
 	if (literal[0] == '+' || literal[0] == '-')
 		literal.erase(0, 1);
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < 4; i++)
 	{
 		if (literal == special[i])
 			return 1;
@@ -18,7 +18,16 @@ bool	isSpecial(std::string literal)
 	return 0;
 }
 
-type	getType(std::string literal)
+type	whichSpecial(const std::string &literal)
+{
+	if (literal[literal.size() -1] == 'f' && literal[literal.size() -2] == 'f')
+		return SPECIALF;
+	if (literal == "nanf")
+		return SPECIALF;
+	return SPECIALD;
+}
+
+type	getType(const std::string &literal)
 {
 	unsigned long 	i = 0;
 
@@ -33,7 +42,7 @@ type	getType(std::string literal)
 		if (!isdigit(literal[i]))
 		{
 			if (isSpecial(literal))
-				return SPECIAL;
+				return whichSpecial(literal);
 			if (literal[i] == '.')
 			{
 				i++;
@@ -57,7 +66,7 @@ type	getType(std::string literal)
 	return INT;
 }
 
-void	printNone(std::string literal)
+void	printNone(const std::string &literal)
 {
 	(void)literal;
 	std::cout << "char: impossible" << std::endl;
@@ -66,7 +75,15 @@ void	printNone(std::string literal)
 	std::cout << "double: impossible" << std::endl;
 }
 
-void	printSpecial(std::string literal)
+void	printSpecialFloat(const std::string &literal)
+{
+	std::cout << "char: impossible" << std::endl;
+	std::cout << "int: impossible" << std::endl;
+	std::cout << "float: " << literal << std::endl;
+	std::cout << "double: " << literal.substr(0, literal.size() -1) << std::endl;
+}
+
+void	printSpecialDouble(const std::string &literal)
 {
 	std::cout << "char: impossible" << std::endl;
 	std::cout << "int: impossible" << std::endl;
@@ -74,7 +91,7 @@ void	printSpecial(std::string literal)
 	std::cout << "double: " << literal << std::endl;
 }
 
-void	convertChar(std::string literal)
+void	convertChar(const std::string &literal)
 {
 	std::cout << "char: '" << literal << "'" << std::endl;
 	std::cout << "int: impossible" << std::endl;
@@ -82,7 +99,7 @@ void	convertChar(std::string literal)
 	std::cout << "double: impossible" << std::endl;
 }
 
-void	convertInt(std::string literal)
+void	convertInt(const std::string &literal)
 {
 	long 	nbr = 0;
 	int		n = 0;
@@ -110,7 +127,7 @@ void	convertInt(std::string literal)
 	std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(n) << std::endl;
 }
 
-void	convertFloat(std::string literal)
+void	convertFloat(const std::string &literal)
 {
 	char c = 0;
 	errno = 0;
@@ -138,7 +155,7 @@ void	convertFloat(std::string literal)
 	std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(nbr) << std::endl;
 }
 
-void	convertDouble(std::string literal)
+void	convertDouble(const std::string &literal)
 {
 	char c = 0;
 	errno = 0;
@@ -171,12 +188,13 @@ void	convertDouble(std::string literal)
 
 void	ScalarConverter::convert(std::string literal)
 {
-	void (*methods[])(std::string literal) = {
+	void (*methods[])(const std::string &literal) = {
 		&convertChar,
 		&convertInt,
 		&convertFloat,
 		&convertDouble,
-		&printSpecial,
+		&printSpecialFloat,
+		&printSpecialDouble,
 		&printNone
 	};
 	type inputType = getType(literal);
