@@ -10,7 +10,7 @@ TEST_NAME = test
 OBJ_DIR = obj
 TEST_FILE = output.txt
 
-SRC = main.cpp ScalarConverter.cpp
+SRC = main.cpp ScalarConverter.cpp getType.cpp print.cpp
 TEST_SRC = tests.cpp
 
 OBJ = $(SRC:%.cpp=obj/%.o)
@@ -30,10 +30,10 @@ $(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR)
 $(OBJ_DIR)/tests.o: tests.cpp | $(OBJ_DIR)
 	@$(CC) -MMD -MF $(OBJ_DIR)/tests.d -c $< -o $@
 
-$(NAME): $(OBJ_DIR) $(OBJ)
+$(NAME): $(OBJ) | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
-$(TEST_NAME): $(NAME) $(OBJ_DIR) $(TEST_OBJ)
+$(TEST_NAME): $(TEST_OBJ) | $(NAME) $(OBJ_DIR) 
 	@$(CC) $(CFLAGS) $(TEST_OBJ) $(TEST_LFLAGS) -o $@
 
 clean:
