@@ -22,6 +22,8 @@ type	getType(std::string literal)
 {
 	unsigned long 	i = 0;
 
+	if (literal.empty())
+		return NONE;
 	if (literal.size() == 1 && isprint(literal[0]) && !isdigit(literal[0]))
 		return CHAR;
 	if (literal[0] == '-' || literal[0] == '+')
@@ -179,5 +181,4 @@ void	ScalarConverter::convert(std::string literal)
 	};
 	type inputType = getType(literal);
 	methods[inputType](literal);
-
 }
