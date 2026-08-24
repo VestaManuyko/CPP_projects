@@ -1,21 +1,5 @@
 #include "B.hpp"
 
-B::B()
-{
-	return ;
-}
+B::B() {};
 
-B::B(const B& other)
-{
-	return ;
-}
-
-B& B::operator=(const B& other)
-{
-	return (*this);
-}
-
-B::~B()
-{
-	return ;
-}
+B::~B() {};
