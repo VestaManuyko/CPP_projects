@@ -1,9 +1,23 @@
 #ifndef ITER_HPP
 # define ITER_HPP
 
-template<typename T> void iter()
+#include <cstddef>
+
+template<typename T>
+void iter(T *arr, const std::size_t &len, void(*f)(T &))
 {
-	
+	if (arr == NULL)
+		return ;
+	for (size_t i = 0; i < len; i++)
+		f(arr[i]);
+}
+template<typename T>
+void iter(T *arr, const std::size_t &len, void(*f)(const T &))
+{
+	if (arr == NULL)
+		return ;
+	for (size_t i = 0; i < len; i++)
+		f(arr[i]);
 }
 
 #endif
