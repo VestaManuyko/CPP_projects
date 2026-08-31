@@ -2,6 +2,7 @@
 # define ITER_HPP
 
 #include <cstddef>
+#include <iostream>
 
 template<typename T>
 void iter(T *arr, const std::size_t &len, void(*f)(T &))
