@@ -1,6 +1,8 @@
 #ifndef ARRAY_HPP
 # define ARRAY_HPP
 
+#include <iostream>
+
 template<typename T>
 class Array
 {
@@ -12,6 +14,8 @@ class Array
     	Array() : _array(NULL), _size(0) {};
 		Array(unsigned int n)
 		{
+			if (n == 0)
+				return ;
 			try
 			{
 				_array = new T[n];
@@ -24,7 +28,7 @@ class Array
 				std::cerr << e.what() << '\n';
 			}
 		}
-		Array(const Array& other);
+		Array(const Array& other)
 		{
 			delete[] _array;
 			try
@@ -36,7 +40,7 @@ class Array
 			}
 			catch(const std::exception& e)
 			{
-				std::cerr << e.what() << '\n';
+				std::cout << e.what() << '\n';
 			}
 		}
 		Array& operator=(const Array& other)
@@ -51,8 +55,9 @@ class Array
 			}
 			catch(const std::exception& e)
 			{
-				std::cerr << e.what() << '\n';
+				std::cout << e.what() << '\n';
 			}
+			return *this;
 		}
 		~Array()
 		{
@@ -62,6 +67,21 @@ class Array
 		unsigned int	size(void) const
 		{
 			return _size;
+		}
+
+		T& operator[](std::size_t i)
+		{
+			if (i >= _size)
+				throw std::out_of_range("Index out of range");
+
+			return _array[i];
+		}
+
+		const T& operator[](std::size_t i) const
+		{
+			if (i >= _size)
+				throw std::out_of_range("Index out of range");
+			return _array[i];
 		}
 };
 
