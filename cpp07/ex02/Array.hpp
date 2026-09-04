@@ -59,7 +59,7 @@ class Array
 			delete[] _array;
 		}
 
-		unsigned int	size(void)
+		unsigned int	size(void) const
 		{
 			return _size;
 		}
