@@ -12,16 +12,14 @@ class Array
 
 	public:
     	Array() : _array(NULL), _size(0) {};
-		Array(unsigned int n)
+		Array(unsigned int n) : _array(NULL), _size(n)
 		{
 			if (n == 0)
 				return ;
 			_array = new T[n]();
-			_size = n;
 		}
 		Array(const Array& other)
 		{
-			delete[] _array;
 			_size = other.size();
 			_array = new T[_size];
 			for (unsigned int i = 0; i < _size; i++)
@@ -29,11 +27,14 @@ class Array
 		}
 		Array& operator=(const Array& other)
 		{
-			delete[] _array;
-			_size = other.size();
-			_array = new T[_size];
-			for (unsigned int i = 0; i < _size; i++)
-				_array[i] = other._array[i];
+			if (this != &other)
+ 		   	{
+				delete[] _array;
+				_size = other.size();
+				_array = new T[_size];
+				for (unsigned int i = 0; i < _size; i++)
+					_array[i] = other._array[i];
+			}
 			return *this;
 		}
 		~Array()
@@ -50,7 +51,6 @@ class Array
 		{
 			if (i >= _size)
 				throw std::out_of_range("Index out of range");
-
 			return _array[i];
 		}
 

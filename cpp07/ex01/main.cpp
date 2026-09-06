@@ -27,29 +27,19 @@ std::ostream & operator<<(std::ostream &stream, const Zombie &zombie)
 	return stream; 
 }
 
-Zombie* zombieHorde(int N)
+int main()
 {
-	Zombie *Horde = NULL;
-
-	if (N < 1)
-		return NULL;
 	try
 	{
-		Horde = new Zombie[N];
+		int arr[] = {1, 2, 3, 4, 5};
+		iter(arr, 5, print<int>);
+		iter(arr, 5, printconst<int>);
+		Zombie *arr3 = new Zombie[3];
+		iter(arr3, 3, print<Zombie>);
+		delete[] arr3;
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << std::endl;
+		std::cerr << e.what() << '\n';
 	}
-	return (Horde);
-}
-
-int main()
-{
-	int arr[] = {1, 2, 3, 4, 5};
-	iter(arr, 5, print<int>);
-	iter(arr, 5, printconst<int>);
-	Zombie *arr3 = zombieHorde(5);
-	iter(arr3, 5, print<Zombie>);
-	delete[] arr3;
 }

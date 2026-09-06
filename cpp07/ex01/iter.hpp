@@ -6,7 +6,7 @@
 template<typename T>
 void iter(T *arr, const std::size_t &len, void(*f)(T &))
 {
-	if (arr == NULL)
+	if (arr == NULL || f == NULL)
 		return ;
 	for (size_t i = 0; i < len; i++)
 		f(arr[i]);
@@ -14,7 +14,7 @@ void iter(T *arr, const std::size_t &len, void(*f)(T &))
 template<typename T>
 void iter(T *arr, const std::size_t &len, void(*f)(const T &))
 {
-	if (arr == NULL)
+	if (arr == NULL || f == NULL)
 		return ;
 	for (size_t i = 0; i < len; i++)
 		f(arr[i]);
