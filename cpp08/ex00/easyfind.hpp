@@ -3,13 +3,23 @@
 
 #include <algorithm>
 
-template<typename T>
-T *easyfind(T &x, int value)
+class notFound : public std::exception
 {
-	T it = find(x.begin(), x.end(), value);
+	public:
+		const char* what() const throw()
+		{
+			return ("Not found.");
+		}
+};
+
+template<typename T>
+typename T::iterator easyfind(T &x, int value)
+{
+	typename T::iterator it = find(x.begin(), x.end(), value);
 	if (it == x.end())
-		return NULL;
+		throw notFound();
 	return it;
 }
+
 
 #endif
