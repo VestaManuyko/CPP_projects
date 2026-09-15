@@ -20,7 +20,7 @@ class Span
 	int				longestSpan();
 	void			addNumber(int value);
 	int 			getNumber(unsigned int i) const;
-	unsigned int	getMax(void) const;
+	std::size_t		getSize(void) const;
 
 	template <typename T>
 	void	addNumber(typename T::iterator start, typename T::iterator end)

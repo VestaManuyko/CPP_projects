@@ -34,14 +34,14 @@ int Span::getNumber(unsigned int i) const
 	return _numbers[i];
 }
 
-unsigned int	Span::getMax(void) const
+std::size_t	Span::getSize(void) const
 {
-	return _max;
+	return _numbers.size();
 }
 
 std::ostream &operator<<(std::ostream &stream, const Span &span)
 {
-	for (unsigned int i = 0; i < span.getMax(); i++)
+	for (unsigned int i = 0; i < span.getSize(); i++)
 		stream << span.getNumber(i) << "\n";
 	return stream;
 }
