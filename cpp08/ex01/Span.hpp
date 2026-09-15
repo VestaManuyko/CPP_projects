@@ -2,6 +2,7 @@
 # define SPAN_HPP
 
 #include <vector>
+#include <iostream>
 
 class Span
 {
@@ -15,15 +16,17 @@ class Span
 		Span& operator=(const Span& other);
 		~Span();
 
-	int		shortestSpan();
-	int		longestSpan();
-	void	addNumber(int value);
+	int				shortestSpan();
+	int				longestSpan();
+	void			addNumber(int value);
+	int 			getNumber(unsigned int i) const;
+	unsigned int	getMax(void) const;
 
 	template <typename T>
 	void	addNumber(typename T::iterator start, typename T::iterator end)
 	{
 		long space_left = _max - _numbers.size();
-		std::iterator_traits<typename T::iterator>::difference_type range = std::distance(start, end);
+		typename std::iterator_traits<typename T::iterator>::difference_type range = std::distance(start, end);
 		if (range > space_left)
 			throw std::out_of_range("Reached max capacity.");
 		std::copy(start, end, _numbers.end());
@@ -35,5 +38,7 @@ class Span
 			const char* what() const throw();
 	};
 };
+
+std::ostream &operator<<(std::ostream &stream, const Span &span);
 
 #endif

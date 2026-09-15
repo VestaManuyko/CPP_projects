@@ -6,12 +6,12 @@ Span::Span() : _max(0){};
 
 Span::Span(unsigned int n) : _max(n){};
 
-Span::Span(const Span& other) : _max(other._max), _numbers(other._numbers){};
+Span::Span(const Span& other) : _numbers(other._numbers), _max(other._max) {};
 
 Span& Span::operator=(const Span& other)
 {
 	_numbers = other._numbers;
-	_max = _max;
+	_max = other._max;
 	return (*this);
 }
 
@@ -27,4 +27,21 @@ void	Span::addNumber(int value)
 	if (_numbers.size() == _max)
 		throw std::out_of_range("Reached max capacity.");
 	_numbers.push_back(value);
+}
+
+int Span::getNumber(unsigned int i) const
+{
+	return _numbers[i];
+}
+
+unsigned int	Span::getMax(void) const
+{
+	return _max;
+}
+
+std::ostream &operator<<(std::ostream &stream, const Span &span)
+{
+	for (unsigned int i = 0; i < span.getMax(); i++)
+		stream << span.getNumber(i) << "\n";
+	return stream;
 }
