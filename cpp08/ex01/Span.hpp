@@ -23,13 +23,20 @@ class Span
 	std::size_t		getSize(void) const;
 
 	template <typename T>
-	void	addNumber(typename T::iterator start, typename T::iterator end)
+	void	addNumber(T start, T end)
 	{
-		long space_left = _max - _numbers.size();
-		typename std::iterator_traits<typename T::iterator>::difference_type range = std::distance(start, end);
-		if (range > space_left)
+		typename std::iterator_traits<T>::difference_type range = std::distance(start, end);
+		long newRange = range < 0 ? -range : range;
+		if (static_cast<std::size_t>(newRange) > _max - _numbers.size())
 			throw std::out_of_range("Reached max capacity.");
-		std::copy(start, end, _numbers.end());
+		if (range < 0)
+		{
+			std::reverse_iterator<T> rstart(start);
+			std::reverse_iterator<T> rend(end);
+			std::copy(rstart, rend, back_inserter(_numbers));
+		}
+		else
+			std::copy(start, end, back_inserter(_numbers));
 	}
 
 	class noSpan : public std::exception
