@@ -41,14 +41,31 @@ std::size_t	Span::getSize(void) const
 	return _numbers.size();
 }
 
-int	Span::longestSpan() const
+int	Span::longestSpan()
 {
-
+	if (_numbers.size() < 2)
+		throw noSpan();
+	std::vector<int>::iterator min = std::min_element(_numbers.begin(), _numbers.end());
+	std::vector<int>::iterator max = std::max_element(_numbers.begin(), _numbers.end());
+	return *max - *min;
 }
 
-int	Span::shortestSpan() const
+int	Span::shortestSpan()
 {
-
+	int diff = 2147483647;
+	int tmp_diff = 0;
+	if (_numbers.size() < 2)
+		throw noSpan();
+	std::vector<int> tmp(_numbers);
+	std::sort(tmp.begin(), tmp.end());
+	for (unsigned i = 1; i < tmp.size(); i++)
+	{
+		tmp_diff = diff;
+		diff = tmp[i] - tmp[i - 1];
+		if (diff > tmp_diff)
+			return tmp_diff;
+	}
+	return tmp_diff;
 }
 
 std::ostream &operator<<(std::ostream &stream, const Span &span)
