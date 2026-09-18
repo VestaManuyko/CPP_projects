@@ -31,12 +31,24 @@ void	Span::addNumber(int value)
 
 int Span::getNumber(unsigned int i) const
 {
+	if (i >= getSize() || i < 0)
+		return 0;
 	return _numbers[i];
 }
 
 std::size_t	Span::getSize(void) const
 {
 	return _numbers.size();
+}
+
+int	Span::longestSpan() const
+{
+
+}
+
+int	Span::shortestSpan() const
+{
+
 }
 
 std::ostream &operator<<(std::ostream &stream, const Span &span)
