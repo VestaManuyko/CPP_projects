@@ -19,7 +19,7 @@ Span::~Span() {};
 
 const char *Span::noSpan::what() const throw()
 {
-	return ("No span.");
+	return ("Size to small for span calculation.");
 }
 
 void	Span::addNumber(int value)
@@ -41,7 +41,7 @@ std::size_t	Span::getSize(void) const
 	return _numbers.size();
 }
 
-int	Span::longestSpan()
+unsigned int	Span::longestSpan()
 {
 	if (_numbers.size() < 2)
 		throw noSpan();
@@ -50,7 +50,7 @@ int	Span::longestSpan()
 	return *max - *min;
 }
 
-int	Span::shortestSpan()
+unsigned int	Span::shortestSpan()
 {
 	int diff = 2147483647;
 	int tmp_diff = 0;
@@ -62,10 +62,12 @@ int	Span::shortestSpan()
 	{
 		tmp_diff = diff;
 		diff = tmp[i] - tmp[i - 1];
+		if (diff < 0)
+			diff = -diff;
 		if (diff > tmp_diff)
 			return tmp_diff;
 	}
-	return tmp_diff;
+	return diff;
 }
 
 std::ostream &operator<<(std::ostream &stream, const Span &span)

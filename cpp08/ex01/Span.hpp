@@ -16,8 +16,8 @@ class Span
 		Span& operator=(const Span& other);
 		~Span();
 
-	int				shortestSpan();
-	int				longestSpan();
+	unsigned int	shortestSpan();
+	unsigned int	longestSpan();
 	void			addNumber(int value);
 	int 			getNumber(unsigned int i) const;
 	std::size_t		getSize(void) const;
