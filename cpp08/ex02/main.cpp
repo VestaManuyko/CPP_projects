@@ -54,5 +54,40 @@ int main()
 	std::cout << *lit << std::endl;
 	++lit;
 	}
-	return 0;
+	title("Default container type = std::list");
+	MutantStack<std::string, std::list<std::string> > anotherStack;
+
+	anotherStack.push("1string1");
+	anotherStack.push("2string2");
+	anotherStack.push("3string3");
+	MutantStack<std::string, std::list<std::string> >::iterator iter = anotherStack.begin();
+	MutantStack<std::string, std::list<std::string> >::iterator itere = anotherStack.end();
+	++iter;
+	--iter;
+	while (iter != itere)
+	{
+	std::cout << *iter << std::endl;
+	++iter;
+	}
+	title("Const iterator test");
+	const MutantStack<int> constStack(mstack);
+	MutantStack<int>::const_iterator iteree = constStack.begin();
+	MutantStack<int>::const_iterator itereee = constStack.end();
+	++iteree;
+	--iteree;
+	while (iteree != itereee)
+	{
+	std::cout << *iteree << std::endl;
+	++iteree;
+	}
+	title("Reverse iterator test");
+	MutantStack<int>::reverse_iterator jit = mstack.rbegin();
+	MutantStack<int>::reverse_iterator jite = mstack.rend();
+	++jit;
+	--jit;
+	while (jit != jite)
+	{
+	std::cout << *jit << std::endl;
+	++jit;
+	}
 }
