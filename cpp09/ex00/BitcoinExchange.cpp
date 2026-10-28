@@ -74,13 +74,13 @@ int	check_key(std::string key)
 	}
 	if (key.size() != 10)
 	{
-		std::cerr << "Error: date format not valid, expected Year-Month-Date\n";
+		std::cerr << "Error: date format not valid, expected valid Year-Month-Date\n";
 		return -1;
 	}
 	size_t pos = key.find('-');
 	if (pos == std::string::npos)
 	{
-		std::cerr << "Error: date format not valid, expected Year-Month-Date\n";
+		std::cerr << "Error: date format not valid, expected 'Year-Month-Date'\n";
 		return -1;
 	}
 	std::string year = key.substr(0, pos);
