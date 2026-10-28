@@ -9,10 +9,7 @@ int	is_date_only_digit(std::string values[3])
 		while (i < values[j].size())
 		{
 			if (isdigit(values[j][i]) == 0)
-			{
-				std::cerr << "Error: date invalid, excpected a valid date between 2009-2026\n";
 				return -1;
-			}
 			i++;
 		}
 		j++;
@@ -20,14 +17,49 @@ int	is_date_only_digit(std::string values[3])
 	return 0;
 }
 
+bool	check_leap_year(int year)
+{
+	if (year % 400 == 0)
+		return true;
+	if (year % 100 == 0)
+		return false;
+	return year % 4 == 0;
+}
+
 int	validate_date(std::string year, std::string month, std::string date)
 {
+	bool long_month = false;
 	std::string values[3] ={year, month, date};
 	if (is_date_only_digit(values) == -1)
 		return -1;
 	if (std::atoi(year.c_str()) < 2009)
+		return -1;
+	int month_nbr = std::atoi(month.c_str());
+	if (month_nbr < 1 || month_nbr > 12)
+		return -1;
+	if (month_nbr <= 7)
 	{
-		std::cerr << "Error: date invalid, excpected a valid date between 2009-2026\n";
+		if (month_nbr % 2 != 0)
+			long_month = true;
+		if (month_nbr == 2)
+		{
+			if (check_leap_year(std::atoi(year.c_str())) == true)
+				long_month = true;
+		}
+	}
+	else
+	{
+		if (month_nbr % 2 == 0)
+			long_month = true;
+	}
+	int date_nbr = std::atoi(date.c_str());
+	if (date_nbr < 1 || (long_month == true && date_nbr > 31) || (long_month == false && date_nbr > 30))
+		return -1;
+	if (month_nbr == 2)
+	{
+		if (long_month == true && date_nbr > 29)
+			return -1;
+		if (long_month == false && date_nbr > 28)
 			return -1;
 	}
 	return 0;
