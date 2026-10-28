@@ -164,14 +164,34 @@ size_t	check_line(std::string line)
 void	convert_bitcoin(std::ifstream &file, std::map<std::string, float> db)
 {
 	std::string line;
+	float result = 0;
 	while (std::getline(file, line))
 	{
 		size_t	pos = check_line(line);
 		if (pos != std::string::npos)
 		{
-			//convertion
-			std::cout << line << "\n";
-			(void)db;
+			std::string key = line.substr(0, pos);
+			float value = std::strtof(line.substr(pos + 3).c_str(), NULL);
+			std::map<std::string, float>::iterator it = db.lower_bound(key);
+			if (it == db.end())
+			{
+				it--;
+				result = it->second * value;
+				std::cout << key << " => " << result << "\n";
+			}
+			else if (it == db.begin())
+				std::cerr << "Error: date is too early\n";
+			else if (it->first == key)
+			{
+				result = it->second * value;
+				std::cout << key << " => " << result << "\n";
+			}
+			else if (it->first != key)
+			{
+				it--;
+				result = it->second * value;
+				std::cout << key << " => " << result << "\n";
+			}
 		}
 	}
 }
