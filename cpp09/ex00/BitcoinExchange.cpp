@@ -103,11 +103,29 @@ int	check_key(std::string key)
 
 int	check_value(std::string value)
 {
+	std::string::size_type i = 0;
+	int dot_amount = 0;
 	errno = 0;
 	if (value.empty())
 	{
 		std::cerr << "Error: empty value\n";
 		return -1;
+	}
+	while (i < value.size())
+	{
+		if (isdigit(value[i]) == 0 && value[i] != '.')
+		{
+			std::cerr << "Error: wrong value detected, expected: int/float from 0 to 1000\n";
+			return -1;
+		}
+		if (value[i] == '.')
+			dot_amount++;
+		i++;
+	}
+	if (dot_amount > 1)
+	{
+		std::cerr << "Error: wrong value detected, too many '.'\n";
+			return -1;
 	}
 	float	float_val = std::strtof(value.c_str(), NULL);
 	if (errno == ERANGE)
@@ -115,9 +133,9 @@ int	check_value(std::string value)
 		std::cerr << "Error: overflow detected\n";
 		return -1;
 	}
-	if (float_val < 0 || float_val > 1000)
+	if (float_val > 1000)
 	{
-		std::cerr << "Error: wrong value detected, expected: 0 to 1000\n";
+		std::cerr << "Error: wrong value detected, value too large\n";
 		return -1;
 	}
 	return 0;

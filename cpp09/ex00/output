@@ -1,0 +1,20 @@
+2009-01-02 | 1
+2024-02-29 | 0.0
+2026-10-28 | 1000
+Error: date invalid, excpected a valid date between 2009-2026
+Error: date invalid, excpected a valid date between 2009-2026
+Error: date invalid, excpected a valid date between 2009-2026
+Error: date invalid, excpected a valid date between 2009-2026
+Error: date invalid, excpected a valid date between 2009-2026
+Error: date invalid, excpected a valid date between 2009-2026
+Error: date invalid, excpected a valid date between 2009-2026
+Error: date format not valid, expected valid Year-Month-Date
+Error: date format not valid, expected 'Year-Month-Date'
+Error: format is wrong
+Error: wrong value detected, expected: int/float from 0 to 1000
+Error: wrong value detected, value too large
+Error: wrong value detected, expected: int/float from 0 to 1000
+Error: wrong value detected, expected: int/float from 0 to 1000
+Error: wrong value detected, too many '.'
+Error: empty value
+Error: format is wrong
