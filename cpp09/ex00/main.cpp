@@ -1,8 +1,5 @@
 #include "BitcoinExchange.hpp"
 #include <iostream>
-#include <fstream>
-#include <map>
-#include <cstdlib>
 
 int	load_db(std::map<std::string, float> &db)
 {

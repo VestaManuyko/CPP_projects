@@ -1,16 +1,10 @@
 #include "BitcoinExchange.hpp"
-#include <array>
-#include <iostream>
-#include <map>
-#include <limits>
-#include <cerrno>
-#include <fstream>
 
-int	is_date_only_digit(std::array<std::string, 3> values)
+int	is_date_only_digit(std::string values[3])
 {
-	int i = 0;
+	std::string::size_type i = 0;
 	int j = 0;
-	while (1)
+	while (j < 3)
 	{
 		while (i < values[j].size())
 		{
@@ -28,10 +22,14 @@ int	is_date_only_digit(std::array<std::string, 3> values)
 
 int	validate_date(std::string year, std::string month, std::string date)
 {
-	std::array<std::string, 3> values ={year, month, date};
+	std::string values[3] ={year, month, date};
 	if (is_date_only_digit(values) == -1)
 		return -1;
-	
+	if (std::atoi(year.c_str()) < 2009)
+	{
+		std::cerr << "Error: date invalid, excpected a valid date between 2009-2026\n";
+			return -1;
+	}
 	return 0;
 }
 
@@ -80,7 +78,7 @@ int	check_value(std::string value)
 		return -1;
 	}
 	float	float_val = std::strtof(value.c_str(), NULL);
-	if (errno = ERANGE)
+	if (errno == ERANGE)
 	{
 		std::cerr << "Error: overflow detected\n";
 		return -1;
@@ -122,6 +120,8 @@ void	convert_bitcoin(std::ifstream &file, std::map<std::string, float> db)
 		if (pos != std::string::npos)
 		{
 			//convertion
+			std::cout << line << "\n";
+			(void)db;
 		}
 	}
 }
