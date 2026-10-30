@@ -9,5 +9,6 @@
 #include <cstdlib>
 
 void	convert_bitcoin(std::ifstream &file, std::map<std::string, float> db);
+int	print_error(std::string message);
 
 #endif

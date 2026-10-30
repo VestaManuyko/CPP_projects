@@ -1,5 +1,11 @@
 #include "BitcoinExchange.hpp"
 
+int	print_error(std::string message)
+{
+	std::cerr << message;
+	return -1;
+}
+
 int	is_date_only_digit(std::string values[3])
 {
 	std::string::size_type i = 0;
@@ -68,36 +74,21 @@ int	validate_date(std::string year, std::string month, std::string date)
 int	check_key(std::string key)
 {
 	if (key.empty())
-	{
-		std::cerr << "Error: no date\n";
-		return -1;
-	}
+		return print_error("Error: no date\n");
 	if (key.size() != 10)
-	{
-		std::cerr << "Error: date format not valid, expected valid Year-Month-Date\n";
-		return -1;
-	}
+		return print_error("Error: date format not valid, expected valid Year-Month-Date\n");
 	size_t pos = key.find('-');
 	if (pos == std::string::npos)
-	{
-		std::cerr << "Error: date format not valid, expected 'Year-Month-Date'\n";
-		return -1;
-	}
+		return print_error("Error: date format not valid, expected 'Year-Month-Date'\n");
 	std::string year = key.substr(0, pos);
 	std::string month = key.substr(pos + 1);
 	pos = month.find('-');
 	if (pos == std::string::npos)
-	{
-		std::cerr << "Error: date format not valid, expected Year-Month-Date\n";
-		return -1;
-	}
+		return print_error("Error: date format not valid, expected Year-Month-Date\n");
 	std::string date = month.substr(pos + 1);
 	month = month.substr(0, pos);
 	if (validate_date(year, month, date) == -1)
-	{
-		std::cerr << "Error: date invalid, excpected a valid date between 2009-2026\n";
-		return -1;
-	}
+		return print_error("Error: date invalid, excpected a valid date between 2009-2026\n");
 	return 0;
 }
 
@@ -107,53 +98,32 @@ int	check_value(std::string value)
 	int dot_amount = 0;
 	errno = 0;
 	if (value.empty())
-	{
-		std::cerr << "Error: empty value\n";
-		return -1;
-	}
+		return print_error("Error: empty value\n");
 	while (i < value.size())
 	{
 		if (isdigit(value[i]) == 0 && value[i] != '.')
-		{
-			std::cerr << "Error: wrong value detected, expected: int/float from 0 to 1000\n";
-			return -1;
-		}
+			return print_error("Error: wrong value detected, expected: int/float from 0 to 1000\n");
 		if (value[i] == '.')
 			dot_amount++;
 		i++;
 	}
 	if (dot_amount > 1)
-	{
-		std::cerr << "Error: wrong value detected, too many '.'\n";
-			return -1;
-	}
+		return print_error("Error: wrong value detected, too many '.'\n");
 	float	float_val = std::strtof(value.c_str(), NULL);
 	if (errno == ERANGE)
-	{
-		std::cerr << "Error: overflow detected\n";
-		return -1;
-	}
+		return print_error("Error: overflow detected\n");
 	if (float_val > 1000)
-	{
-		std::cerr << "Error: wrong value detected, value too large\n";
-		return -1;
-	}
+		return print_error("Error: wrong value detected, value too large\n");
 	return 0;
 }
 
 size_t	check_line(std::string line)
 {
 	if (line.empty())
-	{
-		std::cerr << "Error: empty line\n";
-		return std::string::npos;
-	}
+		return print_error("Error: empty line\n");
 	std::size_t pos = line.find(" | ");
 	if (pos == std::string::npos)
-	{
-		std::cerr << "Error: format is wrong\n";
-		return pos;
-	}
+		return print_error("Error: format is wrong\n");
 	std::string key = line.substr(0, pos);
 	std::string value = line.substr(pos + 3);
 	if (check_key(key) == -1 || check_value(value) == -1)
