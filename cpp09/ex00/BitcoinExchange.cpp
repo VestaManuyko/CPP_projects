@@ -149,7 +149,7 @@ void	convert_bitcoin(std::ifstream &file, std::map<std::string, float> db)
 				result = it->second * value;
 				std::cout << key << " => " << result << "\n";
 			}
-			else if (it == db.begin())
+			else if (it == db.begin() && it->first != key)
 				std::cerr << "Error: date is too early\n";
 			else if (it->first == key)
 			{
