@@ -90,7 +90,10 @@ int	rpn(std::string input)
 			return print_error("Error: weird characters in input\n");
 		i++;
 	}
-	std::cout << *numbers.begin() << "\n";
+	if (numbers.size() == 1)
+		std::cout << *numbers.begin() << "\n";
+	else
+		return print_error("Error: extra input, couldnt process...\n");
 	return 0;
 }
 
