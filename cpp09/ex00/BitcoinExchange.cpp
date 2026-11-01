@@ -164,4 +164,6 @@ void	convert_bitcoin(std::ifstream &file, std::map<std::string, float> db)
 			}
 		}
 	}
+	if (line.empty())
+		print_error("Error: file is empty\n");
 }
