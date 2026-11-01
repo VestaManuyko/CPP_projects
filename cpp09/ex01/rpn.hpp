@@ -1,0 +1,97 @@
+#ifndef RPN_HPP
+# define RPN_HPP
+
+#include <list>
+#include <iostream>
+#include <cstdlib>
+
+int	print_error(std::string message)
+{
+	std::cerr << message;
+	return -1;
+}
+
+bool	is_sign(int c)
+{
+	return (c == '+' | c == '-' | c == '/' | c == '*');
+}
+
+int	rpn(std::string input)
+{
+	std::list<int> numbers;
+	std::list<int>::reverse_iterator it;
+	int result = 0;
+	int last_element = 0;
+
+	if (input.empty())
+		return print_error("Error:input string empty\n");
+	std::string::size_type i = 0;
+	while (input[i])
+	{
+		if (input[i] == ' ')
+		{
+			i++;
+			continue;
+		}
+		if (isdigit(input[i]))
+			numbers.push_back(input[i] - '0');
+		else if (is_sign(input[i]))
+		{
+			if (numbers.empty() | (numbers.size() == 1))
+				return print_error("Error: not enough characters to perform operation\n");
+			it = numbers.rbegin();
+			switch(input[i])
+			{
+				case '+':
+				{
+					last_element = *it;
+					result = *(++it) + last_element;
+					numbers.pop_back();
+					numbers.pop_back();
+					numbers.push_back(result);
+					i++;
+					continue;
+				}
+				case '-':
+				{
+					last_element = *it;
+					result = *(++it) - last_element;
+					numbers.pop_back();
+					numbers.pop_back();
+					numbers.push_back(result);
+					i++;
+					continue;
+				}
+				case '*':
+				{
+					last_element = *it;
+					result =  *(++it) * last_element;
+					numbers.pop_back();
+					numbers.pop_back();
+					numbers.push_back(result);
+					i++;
+					continue;
+				}
+				case '/':
+				{
+					last_element = *it;
+					if (*(++it) == 0)
+					return print_error("Error: division by zero is not allowed\n");
+					result =  *it/last_element;
+					numbers.pop_back();
+					numbers.pop_back();
+					numbers.push_back(result);
+					i++;
+					continue;
+				}
+			}
+		}
+		else
+			return print_error("Error: weird characters in input\n");
+		i++;
+	}
+	std::cout << *numbers.begin() << "\n";
+	return 0;
+}
+
+#endif
