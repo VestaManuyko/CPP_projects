@@ -48,8 +48,9 @@ int	rpn(std::string input)
 				{
 					last_element = *it;
 					first_element = *(++it);
-					//look into when - numbers
-					if ((std::numeric_limits<int>::max() - first_element) < last_element)
+					if (last_element >= 0 && (std::numeric_limits<int>::max() - last_element) < first_element)
+						return print_error("Error: calculations would overflow+\n");
+					if (last_element < 0 && (std::numeric_limits<int>::min() - last_element) > first_element)
 						return print_error("Error: calculations would overflow+\n");
 					result = first_element + last_element;
 					numbers.pop_back();
@@ -62,11 +63,10 @@ int	rpn(std::string input)
 				{
 					last_element = *it;
 					first_element = *(++it);
-					if (last_element > 0 && (std::numeric_limits<int>::min() + last_element) > first_element)
+					if (last_element >= 0 && (std::numeric_limits<int>::min() + last_element) < first_element)
 						return print_error("Error: calculations would overflow-\n");
-						//work on this
-					// if (last_element < 0 && (std::numeric_limits<int>::max() + last_element) )
-   					// 	return print_error("Error: calculations would overflow-\n");
+					if (last_element < 0 && (std::numeric_limits<int>::max() + last_element) > first_element)
+   						return print_error("Error: calculations would overflow-\n");
 					result = first_element - last_element;
 					numbers.pop_back();
 					numbers.pop_back();
