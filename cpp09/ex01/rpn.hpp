@@ -34,7 +34,7 @@ int	rpn(std::string input)
 			i++;
 			continue;
 		}
-		if (input[i] == '-' && input[i + 1] != '\0' && isdigit(input[i + 1]))
+		if (input[i] == '-' && isdigit(input[i + 1]))
 		{
 			numbers.push_back(-(input[i + 1] - '0'));
 			i += 2;
