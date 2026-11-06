@@ -44,8 +44,20 @@ int	multiplication(int first_element, int last_element, std::list<int> &numbers)
 {
 	if (first_element == 0)
 		return 0;
-	if (first_element > 0 && (std::numeric_limits<int>::max() / first_element) < last_element)
-		return print_error("Error: calculations would overflow*\n");
+	if (first_element > 0)
+	{
+		if (last_element > 0 && (std::numeric_limits<int>::max() / last_element) < first_element)
+			return print_error("Error: calculations would overflow*\n");
+		if (last_element < 0 && (std::numeric_limits<int>::min() / last_element) > first_element)
+			return print_error("Error: calculations would overflow*\n");
+	}
+	if (first_element < 0)
+	{
+		if (last_element > 0 && (std::numeric_limits<int>::min() / last_element) < first_element)
+			return print_error("Error: calculations would overflow*\n");
+		if (last_element < 0 && (std::numeric_limits<int>::max() / last_element) > first_element)
+			return print_error("Error: calculations would overflow*\n");
+	}
 	if (first_element < 0 && (std::numeric_limits<int>::max() / first_element) > last_element)
 		return print_error("Error: calculations would overflow*\n");
 	numbers.pop_back();
@@ -91,7 +103,7 @@ int	rpn(std::string input)
 			numbers.push_back(input[i] - '0');
 		else if (is_sign(input[i]))
 		{
-			if (numbers.empty() | (numbers.size() == 1))
+			if (numbers.size() < 2)
 				return print_error("Error: not enough characters to perform operation\n");
 			it = numbers.rbegin();
 			last_element = *it;
