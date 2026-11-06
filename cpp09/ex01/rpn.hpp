@@ -3,7 +3,6 @@
 
 #include <list>
 #include <iostream>
-#include <cstdlib>
 #include <limits>
 
 int	print_error(std::string message)
@@ -35,6 +34,12 @@ int	rpn(std::string input)
 			i++;
 			continue;
 		}
+		if (input[i] == '-' && input[i + 1] != '\0' && isdigit(input[i + 1]))
+		{
+			numbers.push_back(-(input[i + 1] - '0'));
+			i += 2;
+			continue;
+		}
 		if (isdigit(input[i]))
 			numbers.push_back(input[i] - '0');
 		else if (is_sign(input[i]))
@@ -63,9 +68,9 @@ int	rpn(std::string input)
 				{
 					last_element = *it;
 					first_element = *(++it);
-					if (last_element >= 0 && (std::numeric_limits<int>::min() + last_element) < first_element)
+					if (last_element >= 0 && (std::numeric_limits<int>::min() + last_element) > first_element)
 						return print_error("Error: calculations would overflow-\n");
-					if (last_element < 0 && (std::numeric_limits<int>::max() + last_element) > first_element)
+					if (last_element < 0 && (std::numeric_limits<int>::max() + last_element) < first_element)
    						return print_error("Error: calculations would overflow-\n");
 					result = first_element - last_element;
 					numbers.pop_back();
