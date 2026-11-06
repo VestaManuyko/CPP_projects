@@ -16,17 +16,64 @@ bool	is_sign(int c)
 	return (c == '+' | c == '-' | c == '/' | c == '*');
 }
 
+int addition(int first_element, int last_element, std::list<int> &numbers)
+{
+	if (last_element >= 0 && (std::numeric_limits<int>::max() - last_element) < first_element)
+		return print_error("Error: calculations would overflow+\n");
+	if (last_element < 0 && (std::numeric_limits<int>::min() - last_element) > first_element)
+		return print_error("Error: calculations would overflow+\n");
+	numbers.pop_back();
+	numbers.pop_back();
+	numbers.push_back(first_element + last_element);
+	return 0;
+}
+
+int substraction(int first_element, int last_element, std::list<int> &numbers)
+{
+	if (last_element >= 0 && (std::numeric_limits<int>::min() + last_element) > first_element)
+		return print_error("Error: calculations would overflow-\n");
+	if (last_element < 0 && (std::numeric_limits<int>::max() + last_element) < first_element)
+		return print_error("Error: calculations would overflow-\n");
+	numbers.pop_back();
+	numbers.pop_back();
+	numbers.push_back(first_element - last_element);
+	return 0;
+}
+
+int	multiplication(int first_element, int last_element, std::list<int> &numbers)
+{
+	if (first_element == 0)
+		return 0;
+	if (first_element > 0 && (std::numeric_limits<int>::max() / first_element) < last_element)
+		return print_error("Error: calculations would overflow*\n");
+	if (first_element < 0 && (std::numeric_limits<int>::max() / first_element) > last_element)
+		return print_error("Error: calculations would overflow*\n");
+	numbers.pop_back();
+	numbers.pop_back();
+	numbers.push_back(first_element * last_element);
+	return 0;
+}
+
+int	division(int first_element, int last_element, std::list<int> &numbers)
+{
+	if (last_element == 0)
+		return print_error("Error: division by zero is not allowed\n");
+	numbers.pop_back();
+	numbers.pop_back();
+	numbers.push_back(first_element / last_element);
+	return 0;
+}
+
 int	rpn(std::string input)
 {
 	std::list<int> numbers;
 	std::list<int>::reverse_iterator it;
-	int result = 0;
+	std::string::size_type i = 0;
 	int last_element = 0;
 	int first_element = 0;
 
 	if (input.empty())
 		return print_error("Error:input string empty\n");
-	std::string::size_type i = 0;
 	while (input[i])
 	{
 		if (input[i] == ' ')
@@ -47,61 +94,35 @@ int	rpn(std::string input)
 			if (numbers.empty() | (numbers.size() == 1))
 				return print_error("Error: not enough characters to perform operation\n");
 			it = numbers.rbegin();
+			last_element = *it;
+			first_element = *(++it);
 			switch(input[i])
 			{
 				case '+':
 				{
-					last_element = *it;
-					first_element = *(++it);
-					if (last_element >= 0 && (std::numeric_limits<int>::max() - last_element) < first_element)
-						return print_error("Error: calculations would overflow+\n");
-					if (last_element < 0 && (std::numeric_limits<int>::min() - last_element) > first_element)
-						return print_error("Error: calculations would overflow+\n");
-					result = first_element + last_element;
-					numbers.pop_back();
-					numbers.pop_back();
-					numbers.push_back(result);
+					if (addition(first_element, last_element, numbers) == -1)
+						return -1;
 					i++;
 					continue;
 				}
 				case '-':
 				{
-					last_element = *it;
-					first_element = *(++it);
-					if (last_element >= 0 && (std::numeric_limits<int>::min() + last_element) > first_element)
-						return print_error("Error: calculations would overflow-\n");
-					if (last_element < 0 && (std::numeric_limits<int>::max() + last_element) < first_element)
-   						return print_error("Error: calculations would overflow-\n");
-					result = first_element - last_element;
-					numbers.pop_back();
-					numbers.pop_back();
-					numbers.push_back(result);
+					if (substraction(first_element, last_element, numbers) == -1)
+						return -1;
 					i++;
 					continue;
 				}
 				case '*':
 				{
-					last_element = *it;
-					first_element = *(++it);
-					if ((std::numeric_limits<int>::max() / first_element) < last_element)
-						return print_error("Error: calculations would overflow*\n");
-					result =  first_element * last_element;
-					numbers.pop_back();
-					numbers.pop_back();
-					numbers.push_back(result);
+					if (multiplication(first_element, last_element, numbers) == -1)
+						return -1;
 					i++;
 					continue;
 				}
 				case '/':
 				{
-					last_element = *it;
-					first_element = *(++it);
-					if (last_element == 0)
-						return print_error("Error: division by zero is not allowed\n");
-					result =  first_element / last_element;
-					numbers.pop_back();
-					numbers.pop_back();
-					numbers.push_back(result);
+					if (division(first_element, last_element, numbers) == -1)
+						return -1;
 					i++;
 					continue;
 				}
