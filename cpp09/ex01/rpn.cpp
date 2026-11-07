@@ -3,7 +3,7 @@
 int	print_error(std::string message)
 {
 	std::cerr << message;
-	return -1;
+	return 1;
 }
 
 bool	is_sign(int c)
@@ -108,28 +108,28 @@ int	rpn(std::string input)
 				case '+':
 				{
 					if (addition(first_element, last_element, numbers) == -1)
-						return -1;
+						return 1;
 					i++;
 					continue;
 				}
 				case '-':
 				{
 					if (substraction(first_element, last_element, numbers) == -1)
-						return -1;
+						return 1;
 					i++;
 					continue;
 				}
 				case '*':
 				{
 					if (multiplication(first_element, last_element, numbers) == -1)
-						return -1;
+						return 1;
 					i++;
 					continue;
 				}
 				case '/':
 				{
 					if (division(first_element, last_element, numbers) == -1)
-						return -1;
+						return 1;
 					i++;
 					continue;
 				}
