@@ -6,13 +6,13 @@ int	print_error(std::string message)
 	return 1;
 }
 
-int	check_input(std::string input)
+int	PmergeMe::check_input(std::string input)
 {
 	std::string::size_type i = 0;
 
 	if (input.empty())
 		return print_error("Error: input empty\n");
-	while (input[i])
+	while (i < input.size())
 	{
 		if (isdigit(input[i]) == 0)
 			return (print_error("Error: invalid input\n"));
@@ -46,6 +46,7 @@ int	PmergeMe::convert_input(char **argv, int argc)
 	vect_pair.first = vect_input;
 	vect_pair.second = 0;
 	vect.push_back(vect_pair);
+	return 0;
 }
 
 PmergeMe::PmergeMe(char **input, int argc)
@@ -60,6 +61,6 @@ PmergeMe::PmergeMe(char **input, int argc)
 	}
 	if (convert_input(input, argc) == 1)
 		throw std::exception();
-	half_size = argc - 1 / 2;
+	half_size = (argc - 1 )/ 2;
 	comparisons = 0;
 }

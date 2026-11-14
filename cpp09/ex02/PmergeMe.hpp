@@ -49,6 +49,7 @@ class PmergeMe
 	std::vector<std::pair<std::vector<int>, size_t>> vect;
 	PmergeMe();
 	int	convert_input(char **argv, int argc);
+	int	check_input(std::string input);
 
 	template <typename T>
 	void compare_and_sort(T &cont)
