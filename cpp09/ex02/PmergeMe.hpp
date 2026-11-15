@@ -12,8 +12,6 @@ class PmergeMe
 {
 	public:
 	PmergeMe(char **input, int argc);
-
-	//Orthodox form
 	PmergeMe(const PmergeMe& other);
 	PmergeMe& operator=(const PmergeMe& other);
 	~PmergeMe();
@@ -37,7 +35,7 @@ class PmergeMe
 			j++;
 		}
 		compare_and_sort(cont);
-		merge_insertion(cont);
+		merge_insertion(cont, pair_elements * 2);
 	}
 	
 	void	print_containers();
@@ -47,6 +45,7 @@ class PmergeMe
 	std::vector<std::pair<std::vector<int>, size_t> > vect;
 	size_t	half_size;
 	size_t	comparisons;
+
 	PmergeMe();
 	int	convert_input(char **argv, int argc);
 	int	check_input(std::string input);
