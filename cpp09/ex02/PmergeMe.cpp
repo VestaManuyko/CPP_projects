@@ -92,6 +92,7 @@ void	PmergeMe::print_vect(vect_of_pairs vect)
 	while (i < vect.size())
 	{
 		std::cout << "Pair " << i << ": ";
+		j = 0;
 		while (j < vect[i].first.size())
 		{
 			std::cout << vect[i].first[j] << " ";
@@ -110,6 +111,7 @@ void	PmergeMe::print_deq(deq_of_pairs deq)
 	while (i < deq.size())
 	{
 		std::cout << "Pair " << i << ": ";
+		j = 0;
 		while (j < deq[i].first.size())
 		{
 			std::cout << deq[i].first[j] << " ";
@@ -126,15 +128,17 @@ void	PmergeMe::merge_insertion_vect(vect_of_pairs &cont, size_t pair_elements)
 		return ;
 	size_t i = 0;
 	size_t j = 0;
+	size_t	elements_added = 0;
 	vect_of_pairs new_cont;
 	std::pair<std::vector<int>, size_t> tmp_pair;
-	while (j < cont.size())
+	while (j < cont[0].first.size() / _half_size)
 	{
-		i = 0;
-		while (i < pair_elements && i < cont[j].first.size())
+		elements_added = 0;
+		while (elements_added < pair_elements && i < cont[0].first.size())
 		{
 			//here I can get and store the extra element;
-			tmp_pair.first.push_back(cont[j].first[i]);
+			tmp_pair.first.push_back(cont[0].first[i]);
+			elements_added++;
 			i++;
 		}
 		tmp_pair.second = j;
@@ -152,15 +156,17 @@ void	PmergeMe::merge_insertion_deq(deq_of_pairs &cont, size_t pair_elements)
 		return ;
 	size_t i = 0;
 	size_t j = 0;
+	size_t	elements_added = 0;
 	deq_of_pairs new_cont;
 	std::pair<std::deque<int>, size_t> tmp_pair;
-	while (j < cont.size())
+	while (j < cont[0].first.size() / _half_size)
 	{
-		i = 0;
-		while (i < pair_elements && i < cont[j].first.size())
+		elements_added = 0;
+		while (elements_added < pair_elements && i < cont[0].first.size())
 		{
 			//here I can get and store the extra element;
-			tmp_pair.first.push_back(cont[j].first[i]);
+			tmp_pair.first.push_back(cont[0].first[i]);
+			elements_added++;
 			i++;
 		}
 		tmp_pair.second = j;
@@ -175,6 +181,6 @@ void	PmergeMe::merge_insertion_deq(deq_of_pairs &cont, size_t pair_elements)
 
 void	PmergeMe::merge_insertion()
 {
-	merge_insertion_vect(_vect,2);
+	merge_insertion_vect(_vect, 2);
 	merge_insertion_deq(_deq, 2);
 }
