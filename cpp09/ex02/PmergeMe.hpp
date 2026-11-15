@@ -19,7 +19,7 @@ class PmergeMe
 	template <typename T>
 	void	merge_insertion(T &cont, size_t pair_elements)
 	{
-		if (cont[0].first.size() > half_size)
+		if (pair_elements > half_size)
 			return ;
 		size_t i = 0;
 		size_t j = 0;
