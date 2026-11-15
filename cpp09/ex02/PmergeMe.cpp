@@ -109,3 +109,55 @@ void	PmergeMe::print_containers()
 		i++;
 	}
 }
+
+void	PmergeMe::merge_insertion_vect(vect_of_pairs &cont, size_t pair_elements)
+{
+	if (pair_elements > half_size)
+		return ;
+	size_t i = 0;
+	size_t j = 0;
+	vect_of_pairs new_cont;
+	std::pair<std::vector<int>, size_t> tmp_pair;
+	while (j < cont.size())
+	{
+		i = 0;
+		while (i < pair_elements && i < cont[j].first.size())
+		{
+			//here I can get and store the extra element;
+			tmp_pair.first.push_back(cont[j].first[i]);
+			i++;
+		}
+		tmp_pair.second = j;
+		new_cont.push_back(tmp_pair);
+		tmp_pair.first.clear();
+		j++;
+	}
+	compare_and_sort(new_cont);
+	merge_insertion_vect(new_cont, pair_elements * 2);
+}
+
+void	PmergeMe::merge_insertion_deq(deq_of_pairs &cont, size_t pair_elements)
+{
+	if (pair_elements > half_size)
+		return ;
+	size_t i = 0;
+	size_t j = 0;
+	deq_of_pairs new_cont;
+	std::pair<std::deque<int>, size_t> tmp_pair;
+	while (j < cont.size())
+	{
+		i = 0;
+		while (i < pair_elements && i < cont[j].first.size())
+		{
+			//here I can get and store the extra element;
+			tmp_pair.first.push_back(cont[j].first[i]);
+			i++;
+		}
+		tmp_pair.second = j;
+		new_cont.push_back(tmp_pair);
+		tmp_pair.first.clear();
+		j++;
+	}
+	compare_and_sort(new_cont);
+	merge_insertion_deq(new_cont, pair_elements * 2);
+}

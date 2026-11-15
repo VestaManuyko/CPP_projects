@@ -8,6 +8,9 @@
 #include <cerrno>
 #include <cstdlib>
 
+typedef typename std::vector<std::pair<std::vector<int>, size_t> > vect_of_pairs;
+typedef typename std::deque<std::pair<std::deque<int>, size_t> > deq_of_pairs;
+
 class PmergeMe
 {
 	public:
@@ -16,33 +19,14 @@ class PmergeMe
 	PmergeMe& operator=(const PmergeMe& other);
 	~PmergeMe();
 
-	template <typename T>
-	void	merge_insertion(T &cont, size_t pair_elements)
-	{
-		if (pair_elements > half_size)
-			return ;
-		size_t i = 0;
-		size_t j = 0;
-		std::pair<std::vector<int>, size_t> tmp_pair;
-		while (j < cont.first.size())
-		{
-			while (i < pair_elements && i < cont[j].first.size())
-			{
-				tmp_pair.first.push_back(cont[j].first[i]);
-				i++;
-			}
-			tmp_pair.second = j;
-			j++;
-		}
-		compare_and_sort(cont);
-		merge_insertion(cont, pair_elements * 2);
-	}
+	void	merge_insertion_vect(vect_of_pairs &cont, size_t pair_elements);
+	void	merge_insertion_deq(deq_of_pairs &cont, size_t pair_elements);
 	
 	void	print_containers();
 
 	private:
-	std::deque<std::pair<std::deque<int>, size_t> > deq;
-	std::vector<std::pair<std::vector<int>, size_t> > vect;
+	deq_of_pairs deq;
+	vect_of_pairs vect;
 	size_t	half_size;
 	size_t	comparisons;
 
