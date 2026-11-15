@@ -8,8 +8,8 @@
 #include <cerrno>
 #include <cstdlib>
 
-typedef typename std::vector<std::pair<std::vector<int>, size_t> > vect_of_pairs;
-typedef typename std::deque<std::pair<std::deque<int>, size_t> > deq_of_pairs;
+typedef std::vector<std::pair<std::vector<int>, size_t> > vect_of_pairs;
+typedef std::deque<std::pair<std::deque<int>, size_t> > deq_of_pairs;
 
 class PmergeMe
 {
@@ -18,21 +18,25 @@ class PmergeMe
 	PmergeMe(const PmergeMe& other);
 	PmergeMe& operator=(const PmergeMe& other);
 	~PmergeMe();
-
-	void	merge_insertion_vect(vect_of_pairs &cont, size_t pair_elements);
-	void	merge_insertion_deq(deq_of_pairs &cont, size_t pair_elements);
 	
+	void	merge_insertion();
 	void	print_containers();
 
 	private:
-	deq_of_pairs deq;
-	vect_of_pairs vect;
-	size_t	half_size;
-	size_t	comparisons;
+	deq_of_pairs _deq;
+	vect_of_pairs _vect;
+	size_t	_half_size;
+	size_t	_comparisons;
 
 	PmergeMe();
 	int	convert_input(char **argv, int argc);
 	int	check_input(std::string input);
+
+	void	merge_insertion_vect(vect_of_pairs &cont, size_t pair_elements);
+	void	merge_insertion_deq(deq_of_pairs &cont, size_t pair_elements);
+
+	void	print_deq(deq_of_pairs deq);
+	void	print_vect(vect_of_pairs vect);
 
 	template <typename T>
 	void compare_and_sort(T &cont)

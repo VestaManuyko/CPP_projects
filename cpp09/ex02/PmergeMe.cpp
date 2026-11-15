@@ -41,11 +41,11 @@ int	PmergeMe::convert_input(char **argv, int argc)
 	std::pair<std::deque<int>, size_t> deq_pair;
 	deq_pair.first = deq_input;
 	deq_pair.second = 0;
-	deq.push_back(deq_pair);
+	_deq.push_back(deq_pair);
 	std::pair<std::vector<int>, size_t> vect_pair;
 	vect_pair.first = vect_input;
 	vect_pair.second = 0;
-	vect.push_back(vect_pair);
+	_vect.push_back(vect_pair);
 	return 0;
 }
 
@@ -61,24 +61,30 @@ PmergeMe::PmergeMe(char **input, int argc)
 	}
 	if (convert_input(input, argc) == 1)
 		throw std::exception();
-	half_size = (argc - 1 )/ 2;
-	comparisons = 0;
+	_half_size = (argc - 1 )/ 2;
+	_comparisons = 0;
 }
-PmergeMe::PmergeMe(const PmergeMe& other): deq(other.deq), vect(other.vect), half_size(other.half_size), comparisons(other.comparisons){};
+PmergeMe::PmergeMe(const PmergeMe& other): _deq(other._deq), _vect(other._vect), _half_size(other._half_size), _comparisons(other._comparisons){};
 PmergeMe &PmergeMe::operator=(const PmergeMe& other)
 {
 	if (&other != this)
 	{
-		deq = other.deq;
-		vect = other.vect;
-		half_size = other.half_size;
-		comparisons = other.comparisons;
+		_deq = other._deq;
+		_vect = other._vect;
+		_half_size = other._half_size;
+		_comparisons = other._comparisons;
 	}
 	return *this;
 }
 PmergeMe::~PmergeMe(){};
 
 void	PmergeMe::print_containers()
+{
+	print_vect(_vect);
+	print_deq(_deq);
+}
+
+void	PmergeMe::print_vect(vect_of_pairs vect)
 {
 	size_t i = 0;
 	size_t j = 0;
@@ -94,9 +100,13 @@ void	PmergeMe::print_containers()
 		std::cout << "index: " << vect[i].second << std::endl;
 		i++;
 	}
+}
+
+void	PmergeMe::print_deq(deq_of_pairs deq)
+{
+	size_t i = 0;
+	size_t j = 0;
 	std::cout << "Printing container: deque\n";
-	i = 0;
-	j = 0;
 	while (i < deq.size())
 	{
 		std::cout << "Pair " << i << ": ";
@@ -105,14 +115,14 @@ void	PmergeMe::print_containers()
 			std::cout << deq[i].first[j] << " ";
 			j++;
 		}
-		std::cout << "index: " << vect[i].second << std::endl;
+		std::cout << "index: " << deq[i].second << std::endl;
 		i++;
 	}
 }
 
 void	PmergeMe::merge_insertion_vect(vect_of_pairs &cont, size_t pair_elements)
 {
-	if (pair_elements > half_size)
+	if (pair_elements > _half_size)
 		return ;
 	size_t i = 0;
 	size_t j = 0;
@@ -132,13 +142,13 @@ void	PmergeMe::merge_insertion_vect(vect_of_pairs &cont, size_t pair_elements)
 		tmp_pair.first.clear();
 		j++;
 	}
-	compare_and_sort(new_cont);
+	//compare_and_sort(new_cont);
 	merge_insertion_vect(new_cont, pair_elements * 2);
 }
 
 void	PmergeMe::merge_insertion_deq(deq_of_pairs &cont, size_t pair_elements)
 {
-	if (pair_elements > half_size)
+	if (pair_elements > _half_size)
 		return ;
 	size_t i = 0;
 	size_t j = 0;
@@ -158,6 +168,13 @@ void	PmergeMe::merge_insertion_deq(deq_of_pairs &cont, size_t pair_elements)
 		tmp_pair.first.clear();
 		j++;
 	}
-	compare_and_sort(new_cont);
+	//compare_and_sort(new_cont);
+	print_deq(new_cont);
 	merge_insertion_deq(new_cont, pair_elements * 2);
+}
+
+void	PmergeMe::merge_insertion()
+{
+	merge_insertion_vect(_vect,2);
+	merge_insertion_deq(_deq, 2);
 }

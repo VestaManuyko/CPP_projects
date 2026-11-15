@@ -8,6 +8,7 @@ int main(int argc, char **argv)
 			return print_error("Error: no args\n");
 		PmergeMe a(argv, argc);
 		a.print_containers();
+		a.merge_insertion();
 	}
 	catch(const std::exception& e)
 	{
