@@ -5,6 +5,8 @@
 #include <deque>
 #include <vector>
 #include <limits>
+#include <cerrno>
+#include <cstdlib>
 
 class PmergeMe
 {
@@ -12,9 +14,9 @@ class PmergeMe
 	PmergeMe(char **input, int argc);
 
 	//Orthodox form
-	PmergeMe(const PmergeMe& other) {};
-	PmergeMe& operator=(const PmergeMe& other) {};
-	~PmergeMe() {};
+	PmergeMe(const PmergeMe& other);
+	PmergeMe& operator=(const PmergeMe& other);
+	~PmergeMe();
 
 	template <typename T>
 	void	merge_insertion(T &cont, size_t pair_elements)
@@ -38,11 +40,13 @@ class PmergeMe
 		merge_insertion(cont);
 	}
 	
+	void	print_containers();
+
 	private:
+	std::deque<std::pair<std::deque<int>, size_t> > deq;
+	std::vector<std::pair<std::vector<int>, size_t> > vect;
 	size_t	half_size;
 	size_t	comparisons;
-	std::deque<std::pair<std::deque<int>, size_t>> deq;
-	std::vector<std::pair<std::vector<int>, size_t>> vect;
 	PmergeMe();
 	int	convert_input(char **argv, int argc);
 	int	check_input(std::string input);

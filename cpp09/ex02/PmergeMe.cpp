@@ -24,7 +24,7 @@ int	PmergeMe::check_input(std::string input)
 int	PmergeMe::convert_input(char **argv, int argc)
 {
 	long 	nbr = 0;
-	size_t	i = 1;
+	int	i = 1;
 	std::deque<int> deq_input;
 	std::vector<int> vect_input;
 	errno = 0;
@@ -51,7 +51,7 @@ int	PmergeMe::convert_input(char **argv, int argc)
 
 PmergeMe::PmergeMe(char **input, int argc)
 {
-	size_t	i = 0;
+	int	i = 1;
 
 	while (i < argc)
 	{
@@ -77,3 +77,35 @@ PmergeMe &PmergeMe::operator=(const PmergeMe& other)
 	return *this;
 }
 PmergeMe::~PmergeMe(){};
+
+void	PmergeMe::print_containers()
+{
+	size_t i = 0;
+	size_t j = 0;
+	std::cout << "Printing container: vector\n";
+	while (i < vect.size())
+	{
+		std::cout << "Pair " << i << ": ";
+		while (j < vect[i].first.size())
+		{
+			std::cout << vect[i].first[j] << " ";
+			j++;
+		}
+		std::cout << "index: " << vect[i].second << std::endl;
+		i++;
+	}
+	std::cout << "Printing container: deque\n";
+	i = 0;
+	j = 0;
+	while (i < deq.size())
+	{
+		std::cout << "Pair " << i << ": ";
+		while (j < deq[i].first.size())
+		{
+			std::cout << deq[i].first[j] << " ";
+			j++;
+		}
+		std::cout << "index: " << vect[i].second << std::endl;
+		i++;
+	}
+}
