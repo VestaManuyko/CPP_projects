@@ -64,3 +64,16 @@ PmergeMe::PmergeMe(char **input, int argc)
 	half_size = (argc - 1 )/ 2;
 	comparisons = 0;
 }
+PmergeMe::PmergeMe(const PmergeMe& other): deq(other.deq), vect(other.vect), half_size(other.half_size), comparisons(other.comparisons){};
+PmergeMe &PmergeMe::operator=(const PmergeMe& other)
+{
+	if (&other != this)
+	{
+		deq = other.deq;
+		vect = other.vect;
+		half_size = other.half_size;
+		comparisons = other.comparisons;
+	}
+	return *this;
+}
+PmergeMe::~PmergeMe(){};

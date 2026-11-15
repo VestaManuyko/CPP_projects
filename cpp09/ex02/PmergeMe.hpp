@@ -11,10 +11,6 @@ class PmergeMe
 	public:
 	PmergeMe(char **input, int argc);
 
-	//initialise containers internally in the class for later use in merge_insertion?
-	//validate input as class creation stage and throw exeptions if wrong, for better main and clearer structure
-	//these 2 in progress
-
 	//Orthodox form
 	PmergeMe(const PmergeMe& other) {};
 	PmergeMe& operator=(const PmergeMe& other) {};
@@ -54,7 +50,7 @@ class PmergeMe
 	template <typename T>
 	void compare_and_sort(T &cont)
 	{
-
+		(void)cont;
 	}
 };
 
