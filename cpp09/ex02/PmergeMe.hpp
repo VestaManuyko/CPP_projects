@@ -39,7 +39,7 @@ class PmergeMe
 	void	print_vect(vect_of_pairs vect);
 
 	template <typename T, typename pair_type>
-	T	split_pairs(T &cont, pair_type tmp_pair, size_t pair_elements)
+	T	split_pairs(T &cont, pair_type &extra, size_t pair_elements)
 	{
 		size_t i = 0;
 		size_t j = 0;
@@ -50,23 +50,19 @@ class PmergeMe
 			i = 0;
 			while (i < cont[j].first.size())
 			{
-				tmp_pair.first.push_back(cont[j].first[i]);
-				if (tmp_pair.first.size() == pair_elements)
+				extra.first.push_back(cont[j].first[i]);
+				if (extra.first.size() == pair_elements)
 				{
-					tmp_pair.second = index;
-					index++;
-					new_cont.push_back(tmp_pair);
-					tmp_pair.first.clear();
+					extra.second = index++;
+					new_cont.push_back(extra);
+					extra.first.clear();
 				}
 				i++;
 			}
 			j++;
 		}
-		if (tmp_pair.first.empty() == 0)
-		{
-			tmp_pair.second = index;
-			new_cont.push_back(tmp_pair);
-		}
+		if (extra.first.empty() == 0)
+			extra.second = index;
 		return new_cont;
 	}
 
