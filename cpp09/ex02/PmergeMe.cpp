@@ -128,29 +128,8 @@ void	PmergeMe::merge_insertion_vect(vect_of_pairs &cont, size_t pair_elements)
 {
 	if (cont[0].first.size() > _size / 2)
 		return ;
-	size_t i = 0;
-	size_t j = 0;
-	size_t	index = 0;
-	vect_of_pairs new_cont;
 	std::pair<std::vector<int>, size_t> tmp_pair;
-	//this whole loop could be a template with cont and pair as a T
-	while (j < _size / (pair_elements / 2))
-	{
-		i = 0;
-		while (i < cont[j].first.size())
-		{
-			tmp_pair.first.push_back(cont[j].first[i]);
-			if (tmp_pair.first.size() == pair_elements)
-			{
-				tmp_pair.second = index;
-				index++;
-				new_cont.push_back(tmp_pair);
-				tmp_pair.first.clear();
-			}
-			i++;
-		}
-		j++;
-	}
+	vect_of_pairs new_cont = split_pairs(cont, tmp_pair, pair_elements);
 	//compare_and_sort(new_cont);
 	print_vect(new_cont);
 	merge_insertion_vect(new_cont, pair_elements * 2);
@@ -160,29 +139,10 @@ void	PmergeMe::merge_insertion_deq(deq_of_pairs &cont, size_t pair_elements)
 {
 	if (cont[0].first.size() > _size / 2)
 		return ;
-	size_t i = 0;
-	size_t j = 0;
-	size_t	index = 0;
-	deq_of_pairs new_cont;
+	if (cont[0].first.size() > _size / 2)
+		return ;
 	std::pair<std::deque<int>, size_t> tmp_pair;
-	//this whole loop could be a template with cont and pair as a T
-	while (j < _size / (pair_elements / 2))
-	{
-		i = 0;
-		while (i < cont[j].first.size())
-		{
-			tmp_pair.first.push_back(cont[j].first[i]);
-			if (tmp_pair.first.size() == pair_elements)
-			{
-				tmp_pair.second = index;
-				index++;
-				new_cont.push_back(tmp_pair);
-				tmp_pair.first.clear();
-			}
-			i++;
-		}
-		j++;
-	}
+	deq_of_pairs new_cont = split_pairs(cont, tmp_pair, pair_elements);
 	//compare_and_sort(new_cont);
 	print_deq(new_cont);
 	merge_insertion_deq(new_cont, pair_elements * 2);
