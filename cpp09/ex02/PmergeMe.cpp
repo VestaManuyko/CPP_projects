@@ -27,6 +27,8 @@ int	PmergeMe::convert_input(char **argv, int argc)
 	int	i = 1;
 	std::deque<int> deq_input;
 	std::vector<int> vect_input;
+	std::pair<std::deque<int>, size_t> deq_pair;
+	std::pair<std::vector<int>, size_t> vect_pair;
 	errno = 0;
 
 	while (i < argc)
@@ -35,17 +37,17 @@ int	PmergeMe::convert_input(char **argv, int argc)
 		if (errno == ERANGE || nbr < 0 || nbr > std::numeric_limits<int>::max())
 			return print_error("Error: input overflowed\n");
 		deq_input.push_back(static_cast<int>(nbr));
+		deq_pair.first = deq_input;
+		deq_pair.second = i - 1;
+		_deq.push_back(deq_pair);
+		deq_input.clear();
 		vect_input.push_back(static_cast<int>(nbr));
+		vect_pair.first = vect_input;
+		vect_pair.second = i - 1;
+		_vect.push_back(vect_pair);
+		vect_input.clear();
 		i++;
 	}
-	std::pair<std::deque<int>, size_t> deq_pair;
-	deq_pair.first = deq_input;
-	deq_pair.second = 0;
-	_deq.push_back(deq_pair);
-	std::pair<std::vector<int>, size_t> vect_pair;
-	vect_pair.first = vect_input;
-	vect_pair.second = 0;
-	_vect.push_back(vect_pair);
 	return 0;
 }
 
@@ -61,17 +63,17 @@ PmergeMe::PmergeMe(char **input, int argc)
 	}
 	if (convert_input(input, argc) == 1)
 		throw std::exception();
-	_half_size = (argc - 1 )/ 2;
+	_size = (argc - 1 );
 	_comparisons = 0;
 }
-PmergeMe::PmergeMe(const PmergeMe& other): _deq(other._deq), _vect(other._vect), _half_size(other._half_size), _comparisons(other._comparisons){};
+PmergeMe::PmergeMe(const PmergeMe& other): _deq(other._deq), _vect(other._vect), _size(other._size), _comparisons(other._comparisons){};
 PmergeMe &PmergeMe::operator=(const PmergeMe& other)
 {
 	if (&other != this)
 	{
 		_deq = other._deq;
 		_vect = other._vect;
-		_half_size = other._half_size;
+		_size = other._size;
 		_comparisons = other._comparisons;
 	}
 	return *this;
@@ -124,54 +126,61 @@ void	PmergeMe::print_deq(deq_of_pairs deq)
 
 void	PmergeMe::merge_insertion_vect(vect_of_pairs &cont, size_t pair_elements)
 {
-	if (pair_elements > _half_size)
+	if (cont[0].first.size() > _size / 2)
 		return ;
 	size_t i = 0;
 	size_t j = 0;
-	size_t	elements_added = 0;
+	size_t	index = 0;
 	vect_of_pairs new_cont;
 	std::pair<std::vector<int>, size_t> tmp_pair;
-	while (j < cont[0].first.size() / _half_size)
+	//this whole loop could be a template with cont and pair as a T
+	while (j < _size / (pair_elements / 2))
 	{
-		elements_added = 0;
-		while (elements_added < pair_elements && i < cont[0].first.size())
+		i = 0;
+		while (i < cont[j].first.size())
 		{
-			//here I can get and store the extra element;
-			tmp_pair.first.push_back(cont[0].first[i]);
-			elements_added++;
+			tmp_pair.first.push_back(cont[j].first[i]);
+			if (tmp_pair.first.size() == pair_elements)
+			{
+				tmp_pair.second = index;
+				index++;
+				new_cont.push_back(tmp_pair);
+				tmp_pair.first.clear();
+			}
 			i++;
 		}
-		tmp_pair.second = j;
-		new_cont.push_back(tmp_pair);
-		tmp_pair.first.clear();
 		j++;
 	}
 	//compare_and_sort(new_cont);
+	print_vect(new_cont);
 	merge_insertion_vect(new_cont, pair_elements * 2);
 }
 
 void	PmergeMe::merge_insertion_deq(deq_of_pairs &cont, size_t pair_elements)
 {
-	if (pair_elements > _half_size)
+	if (cont[0].first.size() > _size / 2)
 		return ;
 	size_t i = 0;
 	size_t j = 0;
-	size_t	elements_added = 0;
+	size_t	index = 0;
 	deq_of_pairs new_cont;
 	std::pair<std::deque<int>, size_t> tmp_pair;
-	while (j < cont[0].first.size() / _half_size)
+	//this whole loop could be a template with cont and pair as a T
+	while (j < _size / (pair_elements / 2))
 	{
-		elements_added = 0;
-		while (elements_added < pair_elements && i < cont[0].first.size())
+		i = 0;
+		while (i < cont[j].first.size())
 		{
-			//here I can get and store the extra element;
-			tmp_pair.first.push_back(cont[0].first[i]);
-			elements_added++;
+			tmp_pair.first.push_back(cont[j].first[i]);
+			if (tmp_pair.first.size() == pair_elements)
+			{
+				tmp_pair.second = index;
+				index++;
+				new_cont.push_back(tmp_pair);
+				tmp_pair.first.clear();
+			}
 			i++;
 		}
-		tmp_pair.second = j;
-		new_cont.push_back(tmp_pair);
-		tmp_pair.first.clear();
 		j++;
 	}
 	//compare_and_sort(new_cont);
