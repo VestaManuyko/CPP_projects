@@ -84,6 +84,16 @@ class PmergeMe
 			i +=2;
 		}
 	}
+
+	template <typename T, typename pair_type>
+	void	insertion(const T& cont, pair_type extra)
+	{
+		T pend;
+		T main;
+		//split to main and pend
+		//calculate Jacobstahl number-1= our index in the pend array
+		//binary search until that same index in the main array(think of how to preserve the order)
+	}
 };
 
 int	print_error(std::string message);
