@@ -67,9 +67,22 @@ class PmergeMe
 	}
 
 	template <typename T>
+	bool compare(const T& a, const T& b)
+	{
+		_comparisons++;
+		return a[a.size() - 1] > b[b.size() - 1];
+	}
+
+	template <typename T>
 	void compare_and_sort(T &cont)
 	{
-		(void)cont;
+		size_t	i = 1;
+		while (i < cont.size())
+		{
+			if (compare(cont[i - 1].first, cont[i].first))
+				std::swap(cont[i - 1], cont[i]);
+			i +=2;
+		}
 	}
 };
 
