@@ -50,6 +50,9 @@ class PmergeMe
 	void	print_deq(deq_of_pairs deq);
 	void	print_vect(vect_of_pairs vect);
 
+
+//review split pairs to not go through all the numbers but just merge pairs to be pairs of pairs
+//then remove pair_elements since we always going to put together 2 pairs.
 	template <typename T, typename pair_type>
 	T	split_pairs(T &cont, pair_type &extra, size_t pair_elements)
 	{
