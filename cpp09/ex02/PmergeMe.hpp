@@ -83,7 +83,7 @@ class PmergeMe
 	bool compare_pairs(const T& a, const T& b)
 	{
 		_comparisons++;
-		return a[a.size() - 1] > b[b.size() - 1];
+		return a.back() > b.back();
 	}
 
 	template <typename T>
@@ -151,7 +151,7 @@ class PmergeMe
 		i = 0;
 		while (i < pend.size())
 		{
-			partner = find_partner(main, pend[i].second + 1);
+			partner = find_partner(main, pend[i].second);
 			it = binary_search(main, partner, pend[i].first.back());
 			main.insert(it, pend[i]);
 			i++;
