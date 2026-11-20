@@ -63,17 +63,15 @@ PmergeMe::PmergeMe(char **input, int argc)
 	}
 	if (convert_input(input, argc) == 1)
 		throw std::exception();
-	_size = (argc - 1 );
 	_comparisons = 0;
 }
-PmergeMe::PmergeMe(const PmergeMe& other): _deq(other._deq), _vect(other._vect), _size(other._size), _comparisons(other._comparisons){};
+PmergeMe::PmergeMe(const PmergeMe& other): _deq(other._deq), _vect(other._vect), _comparisons(other._comparisons){};
 PmergeMe &PmergeMe::operator=(const PmergeMe& other)
 {
 	if (&other != this)
 	{
 		_deq = other._deq;
 		_vect = other._vect;
-		_size = other._size;
 		_comparisons = other._comparisons;
 	}
 	return *this;

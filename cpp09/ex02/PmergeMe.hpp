@@ -38,7 +38,6 @@ class PmergeMe
 	private:
 	deq_of_pairs _deq;
 	vect_of_pairs _vect;
-	size_t	_size;
 	size_t	_comparisons;
 
 	PmergeMe();
