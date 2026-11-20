@@ -44,41 +44,20 @@ class PmergeMe
 	int	convert_input(char **argv, int argc);
 	int	check_input(std::string input);
 
-	void	merge_insertion_vect(vect_of_pairs &cont, size_t pair_elements);
-	void	merge_insertion_deq(deq_of_pairs &cont, size_t pair_elements);
-
-	void	print_deq(deq_of_pairs deq);
-	void	print_vect(vect_of_pairs vect);
-
-
-//review split pairs to not go through all the numbers but just merge pairs to be pairs of pairs
-//then remove pair_elements since we always going to put together 2 pairs.
 	template <typename T, typename pair_type>
-	T	split_pairs(T &cont, pair_type &extra, size_t pair_elements)
+	void	split_pairs(const T &cont, T &merged_cont, pair_type &extra)
 	{
 		size_t i = 0;
-		size_t j = 0;
-		size_t	index = 0;
-		T new_cont;
-		while (j < cont.size())
+		pair_type merged;
+		while (i + 1 < cont.size())
 		{
-			i = 0;
-			while (i < cont[j].first.size())
-			{
-				extra.first.push_back(cont[j].first[i]);
-				if (extra.first.size() == pair_elements)
-				{
-					extra.second = index++;
-					new_cont.push_back(extra);
-					extra.first.clear();
-				}
-				i++;
-			}
-			j++;
+			merged = cont[i];
+			merged.first.insert(merged.first.end(), cont[i + 1].first.begin(), cont[i + 1].first.end());
+			merged_cont.push_back(merged);
+			i += 2;
 		}
-		if (extra.first.empty() == 0)
-			extra.second = index;
-		return new_cont;
+		if (i < cont.size())
+			extra = cont[i];
 	}
 
 	template <typename T>
@@ -179,6 +158,21 @@ class PmergeMe
 			std::cout << "index: " << cont[i].second << std::endl;
 			i++;
 		}
+	}
+
+	template <typename T>
+	void	merge_insertion_template(T &cont)
+	{
+		if (cont.size() < 2)
+			return ;
+		T	merged_cont;
+		typename T::value_type extra;
+		compare_and_sort(cont);
+		split_pairs(cont, merged_cont, extra);
+		print_cont(merged_cont);
+		merge_insertion_template(merged_cont);
+		// insertion(merged_cont, extra);
+		// cont = merged_cont;
 	}
 };
 
