@@ -96,7 +96,8 @@ void	PmergeMe::merge_insertion_vect(vect_of_pairs &cont, size_t pair_elements)
 	compare_and_sort(cont);
 	vect_of_pairs new_cont = split_pairs(cont, extra, pair_elements);
 	merge_insertion_vect(new_cont, pair_elements * 2);
-	insertion(cont, extra);
+	insertion(new_cont, extra);
+	cont = new_cont;
 }
 
 void	PmergeMe::merge_insertion_deq(deq_of_pairs &cont, size_t pair_elements)
@@ -107,7 +108,8 @@ void	PmergeMe::merge_insertion_deq(deq_of_pairs &cont, size_t pair_elements)
 	compare_and_sort(cont);
 	deq_of_pairs new_cont = split_pairs(cont, extra, pair_elements);
 	merge_insertion_deq(new_cont, pair_elements * 2);
-	insertion(cont, extra);
+	insertion(new_cont, extra);
+	cont = new_cont;
 }
 
 void	PmergeMe::merge_insertion()

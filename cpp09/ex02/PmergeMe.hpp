@@ -153,6 +153,7 @@ class PmergeMe
 		{
 			partner = find_partner(main, pend[i].second);
 			it = binary_search(main, partner, pend[i].first.back());
+			pend[i].second = 0;
 			main.insert(it, pend[i]);
 			i++;
 		}
