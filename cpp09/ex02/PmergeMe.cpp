@@ -82,46 +82,10 @@ PmergeMe::~PmergeMe(){};
 
 void	PmergeMe::print_containers()
 {
-	print_vect(_vect);
-	print_deq(_deq);
-}
-
-void	PmergeMe::print_vect(vect_of_pairs vect)
-{
-	size_t i = 0;
-	size_t j = 0;
-	std::cout << "Printing container: vector\n";
-	while (i < vect.size())
-	{
-		std::cout << "Pair " << i << ": ";
-		j = 0;
-		while (j < vect[i].first.size())
-		{
-			std::cout << vect[i].first[j] << " ";
-			j++;
-		}
-		std::cout << "index: " << vect[i].second << std::endl;
-		i++;
-	}
-}
-
-void	PmergeMe::print_deq(deq_of_pairs deq)
-{
-	size_t i = 0;
-	size_t j = 0;
-	std::cout << "Printing container: deque\n";
-	while (i < deq.size())
-	{
-		std::cout << "Pair " << i << ": ";
-		j = 0;
-		while (j < deq[i].first.size())
-		{
-			std::cout << deq[i].first[j] << " ";
-			j++;
-		}
-		std::cout << "index: " << deq[i].second << std::endl;
-		i++;
-	}
+	std::cout << "Printing vector:\n";
+	print_cont(_vect);
+	std::cout << "Printing deque:\n";
+	print_cont(_deq);
 }
 
 void	PmergeMe::merge_insertion_vect(vect_of_pairs &cont, size_t pair_elements)
@@ -132,7 +96,7 @@ void	PmergeMe::merge_insertion_vect(vect_of_pairs &cont, size_t pair_elements)
 	compare_and_sort(cont);
 	vect_of_pairs new_cont = split_pairs(cont, extra, pair_elements);
 	merge_insertion_vect(new_cont, pair_elements * 2);
-	insertion(new_cont, extra);
+	insertion(cont, extra);
 }
 
 void	PmergeMe::merge_insertion_deq(deq_of_pairs &cont, size_t pair_elements)
@@ -143,7 +107,7 @@ void	PmergeMe::merge_insertion_deq(deq_of_pairs &cont, size_t pair_elements)
 	compare_and_sort(cont);
 	deq_of_pairs new_cont = split_pairs(cont, extra, pair_elements);
 	merge_insertion_deq(new_cont, pair_elements * 2);
-	insertion(new_cont, extra);
+	insertion(cont, extra);
 }
 
 void	PmergeMe::merge_insertion()
