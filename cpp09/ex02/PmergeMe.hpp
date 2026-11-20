@@ -107,28 +107,30 @@ class PmergeMe
 		T main;
 		typename T::iterator partner;
 		typename T::iterator it;
-		pair_type	tmp_pair;
+		pair_type	a;
+		pair_type	b;
 		size_t	i = 0;
-		size_t	j = 0;
+		size_t	half = 0;
 
 		while (i < cont.size())
 		{
-			j = 0;
-			while (j < cont[i].first.size())
-			{
-				tmp_pair.first.push_back(cont[i].first[j]);
-				tmp_pair.second = cont[i].second;
-				if (j + 1 == cont[i].first.size())
-					main.push_back(tmp_pair);
-				else
-					pend.push_back(tmp_pair);
-				tmp_pair.first.clear();
-				j++;
-			}
+			half = cont[i].first.size() / 2;
+			b.first.assign(cont[i].first.begin(), cont[i].first.begin() + half);
+			a.first.assign(cont[i].first.begin() + half, cont[i].first.end());
+			b.second = i;
+			a.second = i;
+			if (b.second == 0)
+				main.push_back(b);
+			else
+				pend.push_back(b);
+			main.push_back(a);
 			i++;
 		}
 		if (extra.first.empty() == 0)
+		{
+			extra.second = i;
 			pend.push_back(extra);
+		}
 		i = 0;
 		while (i < pend.size())
 		{
@@ -169,10 +171,9 @@ class PmergeMe
 		typename T::value_type extra;
 		compare_and_sort(cont);
 		split_pairs(cont, merged_cont, extra);
-		print_cont(merged_cont);
 		merge_insertion_template(merged_cont);
-		// insertion(merged_cont, extra);
-		// cont = merged_cont;
+		insertion(merged_cont, extra);
+		cont = merged_cont;
 	}
 };
 
