@@ -99,14 +99,16 @@ void	PmergeMe::merge_insertion()
 	print_cont(_vect);
 	time = (end.tv_sec - start.tv_sec) * 1000000.0
                   + (end.tv_nsec - start.tv_nsec) / 1000.0;
-	std::cout << "Time to process a range of " << _vect.size() << " elements with std::vector : " << std::fixed << std::setprecision(3) << time << std::endl;
+	std::cout << "Time to process a range of " << _vect.size() << " elements with std::vector : "
+				<< std::fixed << std::setprecision(3) << time << std::endl;
 	_comparisons = 0;
 	clock_gettime(CLOCK_MONOTONIC, &start);
 	merge_insertion_template(_deq);
 	clock_gettime(CLOCK_MONOTONIC, &end);
 	time = (end.tv_sec - start.tv_sec) * 1000000.0
                   + (end.tv_nsec - start.tv_nsec) / 1000.0;
-	std::cout << "Time to process a range of " <<  _deq.size() << " elements with std::deque : " << std::fixed << std::setprecision(3) << time << std::endl;
+	std::cout << "Time to process a range of " <<  _deq.size() << " elements with std::deque : "
+				<< std::fixed << std::setprecision(3) << time << std::endl;
 }
 
 size_t	PmergeMe::get_comparisons()
