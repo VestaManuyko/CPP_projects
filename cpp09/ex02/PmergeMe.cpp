@@ -91,3 +91,31 @@ void	PmergeMe::merge_insertion()
 	merge_insertion_template(_vect);
 	merge_insertion_template(_deq);
 }
+
+size_t	PmergeMe::get_comparisons()
+{
+	return _comparisons;
+}
+
+std::vector<size_t> PmergeMe::jacobstahl_sequence(size_t last_b)
+{
+	std::vector<size_t> order;
+	size_t	prev_jac = 1;
+	size_t	jac = 3;
+	size_t	next_jac = 0;
+	size_t	top = last_b;
+
+	while (prev_jac < last_b)
+	{
+		top = (jac < last_b) ? jac : last_b;
+		while (top > prev_jac)
+		{
+			order.push_back(top);
+			top--;
+		}
+		next_jac = jac + prev_jac * 2;
+		prev_jac = jac;
+		jac = next_jac;
+	}
+	return order;
+}

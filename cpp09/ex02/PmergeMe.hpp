@@ -34,6 +34,7 @@ class PmergeMe
 	
 	void	merge_insertion();
 	void	print_containers();
+	size_t	get_comparisons();
 
 	private:
 	deq_of_pairs _deq;
@@ -43,6 +44,7 @@ class PmergeMe
 	PmergeMe();
 	int	convert_input(char **argv, int argc);
 	int	check_input(std::string input);
+	std::vector<size_t> jacobstahl_sequence(size_t pend_size);
 
 	template <typename T, typename pair_type>
 	void	split_pairs(const T &cont, T &merged_cont, pair_type &extra)
@@ -132,12 +134,14 @@ class PmergeMe
 			pend.push_back(extra);
 		}
 		i = 0;
-		while (i < pend.size())
+		std::vector<size_t> order = jacobstahl_sequence(pend.size() + 1);
+		while (i < order.size())
 		{
-			partner = find_partner(main, pend[i].second);
-			it = binary_search(main, partner, pend[i].first.back());
-			pend[i].second = 0;
-			main.insert(it, pend[i]);
+			size_t	idx = order[i] - 2;
+			partner = find_partner(main, pend[idx].second);
+			it = binary_search(main, partner, pend[idx].first.back());
+			pend[idx].second = 0;
+			main.insert(it, pend[idx]);
 			i++;
 		}
 		cont = main;

@@ -9,6 +9,7 @@ int main(int argc, char **argv)
 		PmergeMe a(argv, argc);
 		a.merge_insertion();
 		a.print_containers();
+		std::cout << "Total comparisons: " << a.get_comparisons() << std::endl;
 	}
 	catch(const std::exception& e)
 	{
