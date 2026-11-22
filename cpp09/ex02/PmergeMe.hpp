@@ -2,6 +2,8 @@
 # define PMERGEME_HPP
 
 #include <iostream>
+#include <time.h>
+#include <iomanip>
 #include <deque>
 #include <vector>
 #include <limits>
@@ -153,16 +155,15 @@ class PmergeMe
 		size_t j = 0;
 		while (i < cont.size())
 		{
-			std::cout << "Pair " << i << ": ";
 			j = 0;
 			while (j < cont[i].first.size())
 			{
 				std::cout << cont[i].first[j] << " ";
 				j++;
 			}
-			std::cout << "index: " << cont[i].second << std::endl;
 			i++;
 		}
+		std::cout << std::endl;
 	}
 
 	template <typename T>
