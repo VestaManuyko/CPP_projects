@@ -89,6 +89,7 @@ void	PmergeMe::print_containers()
 void	PmergeMe::merge_insertion()
 {
 	merge_insertion_template(_vect);
+	_comparisons = 0;
 	merge_insertion_template(_deq);
 }
 

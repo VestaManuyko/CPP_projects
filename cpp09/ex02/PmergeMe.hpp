@@ -140,7 +140,6 @@ class PmergeMe
 			size_t	idx = order[i] - 2;
 			partner = find_partner(main, pend[idx].second);
 			it = binary_search(main, partner, pend[idx].first.back());
-			pend[idx].second = 0;
 			main.insert(it, pend[idx]);
 			i++;
 		}
