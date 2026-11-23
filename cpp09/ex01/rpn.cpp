@@ -107,28 +107,28 @@ int	rpn(std::string input)
 			{
 				case '+':
 				{
-					if (addition(first_element, last_element, numbers) == -1)
+					if (addition(first_element, last_element, numbers) == 1)
 						return 1;
 					i++;
 					continue;
 				}
 				case '-':
 				{
-					if (substraction(first_element, last_element, numbers) == -1)
+					if (substraction(first_element, last_element, numbers) == 1)
 						return 1;
 					i++;
 					continue;
 				}
 				case '*':
 				{
-					if (multiplication(first_element, last_element, numbers) == -1)
+					if (multiplication(first_element, last_element, numbers) == 1)
 						return 1;
 					i++;
 					continue;
 				}
 				case '/':
 				{
-					if (division(first_element, last_element, numbers) == -1)
+					if (division(first_element, last_element, numbers) == 1)
 						return 1;
 					i++;
 					continue;
