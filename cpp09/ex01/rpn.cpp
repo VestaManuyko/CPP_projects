@@ -37,8 +37,6 @@ int substraction(int first_element, int last_element, std::list<int> &numbers)
 
 int	multiplication(int first_element, int last_element, std::list<int> &numbers)
 {
-	if (first_element == 0)
-		return 0;
 	if (first_element > 0)
 	{
 		if (last_element > 0 && (std::numeric_limits<int>::max() / last_element) < first_element)
@@ -139,6 +137,7 @@ int	rpn(std::string input)
 			return print_error("Error: weird characters in input\n");
 		i++;
 	}
+	//std::cout << numbers.size() << std::endl;
 	if (numbers.size() == 1)
 		std::cout << *numbers.begin() << "\n";
 	else
